@@ -415,9 +415,6 @@ export default function HomePage() {
                       </div>
                     ))}
                   </div>
-                  <p className="mt-4 text-xs italic" style={{ color: 'var(--color-ink-soft)', fontFamily: 'var(--font-body)' }}>
-                    {openingHours.note}
-                  </p>
                 </div>
 
                 <div className="space-y-2">
