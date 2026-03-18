@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import PageHero from '@/components/PageHero';
 import SectionReveal from '@/components/SectionReveal';
@@ -52,26 +53,16 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <SectionReveal>
-              <div
-                className="relative overflow-hidden"
-                style={{
-                  height: '450px',
-                  background: 'linear-gradient(135deg, var(--color-green-deep) 0%, var(--color-green-mid) 50%, rgba(201,168,76,0.3) 100%)',
-                }}
-                aria-label="Historical image of Chelsea Muslim Community mosque — IMAGE_PLACEHOLDER"
-                role="img"
-              >
-                <svg className="absolute inset-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <pattern id="history-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-                      <polygon points="30,10 33,22 45,19 36,28 45,37 33,34 30,46 27,34 15,37 24,28 15,19 27,22" fill="#C9A84C"/>
-                    </pattern>
-                  </defs>
-                  <rect width="100%" height="100%" fill="url(#history-pattern)"/>
-                </svg>
+              <div className="relative overflow-hidden" style={{ height: '450px' }}>
+                <Image
+                  src="/images/outside_pic.jpg"
+                  alt="Chelsea Muslim Community mosque exterior on Blantyre Street, Worlds End Estate"
+                  fill
+                  className="object-cover"
+                />
                 <div
                   className="absolute bottom-0 left-0 right-0 p-6"
-                  style={{ background: 'linear-gradient(to top, rgba(30,86,49,0.9), transparent)' }}
+                  style={{ background: 'linear-gradient(to top, rgba(30,86,49,0.85), transparent)' }}
                 >
                   <p className="text-sm italic" style={{ color: 'var(--color-gold-light)', fontFamily: 'var(--font-display)' }}>
                     Chelsea Muslim Community — serving SW10 for generations

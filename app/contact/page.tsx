@@ -90,6 +90,7 @@ export default function ContactPage() {
                     </p>
                     <ul className="text-sm space-y-1" style={{ fontFamily: 'var(--font-body)', color: 'var(--color-ink-soft)' }}>
                       <li><span style={{ color: 'var(--color-ink)' }}>Fulham Broadway</span> (District line) — approx. 15 min walk</li>
+                      <li><span style={{ color: 'var(--color-ink)' }}>Imperial Wharf</span> (National Rail &amp; London Overground / Mildmay line) — approx. 15 min walk</li>
                       <li><span style={{ color: 'var(--color-ink)' }}>Sloane Square</span> (Circle &amp; District lines) — approx. 20 min walk</li>
                       <li><span style={{ color: 'var(--color-ink)' }}>South Kensington</span> (District, Circle &amp; Piccadilly lines) — approx. 20 min walk</li>
                     </ul>

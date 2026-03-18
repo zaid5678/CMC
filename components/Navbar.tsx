@@ -68,13 +68,13 @@ export default function Navbar() {
     <>
       {/* Top Bar */}
       <div
-        className="fixed top-3 left-0 w-full z-50 flex items-center justify-between px-6 lg:px-12"
+        className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 lg:px-12"
         style={{
           height: '36px',
           background: 'var(--color-green-deep)',
         }}
       >
-        <span style={{ color: 'rgba(232,201,122,0.8)', fontFamily: 'var(--font-body)', fontSize: '0.75rem' }}>
+        <span className="hidden sm:block" style={{ color: 'rgba(232,201,122,0.8)', fontFamily: 'var(--font-body)', fontSize: '0.75rem' }}>
           Assalamu Alaikum — Welcome to Chelsea Muslim Community
         </span>
         <NextPrayerBadge />
@@ -84,7 +84,7 @@ export default function Navbar() {
       <nav
         className="fixed left-0 w-full z-40 transition-all duration-300"
         style={{
-          top: '39px',
+          top: '36px',
           background: navBg,
           borderBottom: navBorder,
         }}

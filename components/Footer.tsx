@@ -110,11 +110,6 @@ export default function Footer() {
                   Get Directions →
                 </a>
               </p>
-              <p className="text-sm" style={{ color: 'rgba(248,244,236,0.65)', fontFamily: 'var(--font-body)' }}>
-                <a href="mailto:info@chelseamuslimcommunity.org.uk" style={{ color: 'rgba(248,244,236,0.65)' }}>
-                  info@chelseamuslimcommunity.org.uk
-                </a>
-              </p>
             </address>
           </div>
         </div>
@@ -127,38 +122,6 @@ export default function Footer() {
           <p className="text-xs text-center sm:text-left" style={{ color: 'rgba(248,244,236,0.4)', fontFamily: 'var(--font-body)' }}>
             © 2025 Chelsea Muslim Community · Registered Charity No. XXXXXXX
           </p>
-          <div className="flex items-center gap-6">
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs transition-colors hover:opacity-100"
-              style={{ color: 'rgba(248,244,236,0.4)', fontFamily: 'var(--font-body)' }}
-              aria-label="CMC on Facebook"
-            >
-              Facebook
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs transition-colors hover:opacity-100"
-              style={{ color: 'rgba(248,244,236,0.4)', fontFamily: 'var(--font-body)' }}
-              aria-label="CMC on Instagram"
-            >
-              Instagram
-            </a>
-            <a
-              href="https://wa.me/447700000000"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs transition-colors hover:opacity-100"
-              style={{ color: 'rgba(248,244,236,0.4)', fontFamily: 'var(--font-body)' }}
-              aria-label="CMC on WhatsApp"
-            >
-              WhatsApp
-            </a>
-          </div>
         </div>
       </div>
     </footer>

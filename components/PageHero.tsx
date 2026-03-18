@@ -18,8 +18,8 @@ interface PageHeroProps {
 export default function PageHero({ title, subtitle, breadcrumbs = [] }: PageHeroProps) {
   return (
     <section
-      className="relative overflow-hidden"
-      style={{ background: 'var(--color-green-deep)', paddingTop: '160px', paddingBottom: '80px' }}
+      className="relative overflow-hidden pt-[120px] lg:pt-[160px] pb-16 lg:pb-20"
+      style={{ background: 'var(--color-green-deep)' }}
     >
       <GeometricPattern variant="stars" opacity={0.06} color="gold" />
 
