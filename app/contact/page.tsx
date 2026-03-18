@@ -117,9 +117,9 @@ export default function ContactPage() {
                       Nearest Bus Routes
                     </p>
                     <ul className="text-sm space-y-1" style={{ fontFamily: 'var(--font-body)', color: 'var(--color-ink-soft)' }}>
-                      <li><span style={{ color: 'var(--color-ink)' }}>328</span> — King's Road / Worlds End (closest stop)</li>
-                      <li><span style={{ color: 'var(--color-ink)' }}>22</span> — King's Road (Putney to Piccadilly)</li>
-                      <li><span style={{ color: 'var(--color-ink)' }}>11</span> — King's Road (Hammersmith to Liverpool Street)</li>
+                      <li><span style={{ color: 'var(--color-ink)' }}>328</span> — King&apos;s Road / Worlds End (closest stop)</li>
+                      <li><span style={{ color: 'var(--color-ink)' }}>22</span> — King&apos;s Road (Putney to Piccadilly)</li>
+                      <li><span style={{ color: 'var(--color-ink)' }}>11</span> — King&apos;s Road (Hammersmith to Liverpool Street)</li>
                       <li><span style={{ color: 'var(--color-ink)' }}>319</span> — Sloane Square to Streatham</li>
                     </ul>
                   </div>
