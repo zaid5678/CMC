@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import PageHero from '@/components/PageHero';
 import SectionReveal from '@/components/SectionReveal';
@@ -44,22 +43,8 @@ export default function PrayerTimesPage() {
         title="Prayer Times"
         subtitle="Live prayer times for Chelsea SW10, calculated daily. Jumu'ah every Friday at 12:20pm."
         breadcrumbs={[{ label: 'Prayer Times' }]}
+        image={{ src: '/images/inside_pic.jpg', alt: 'Prayer hall interior of Chelsea Muslim Community mosque' }}
       />
-
-      {/* ═══ INTERIOR IMAGE ═══ */}
-      <div className="relative w-full overflow-hidden" style={{ height: '320px' }}>
-        <Image
-          src="/images/inside_pic.jpg"
-          alt="Prayer hall interior of Chelsea Muslim Community mosque"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: 'linear-gradient(to bottom, rgba(30,86,49,0.25) 0%, rgba(30,86,49,0.05) 50%, rgba(30,86,49,0.25) 100%)' }}
-        />
-      </div>
 
       {/* ═══ JUMU'AH HIGHLIGHT ═══ */}
       <section className="px-6 lg:px-12 py-12" style={{ background: 'var(--color-ivory)' }}>
