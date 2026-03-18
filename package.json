@@ -18,7 +18,7 @@
     "nodemailer": "^8.0.3",
     "react": "^18",
     "react-dom": "^18",
-    "react-leaflet": "^5.0.0"
+    "react-leaflet": "^4.2.1"
   },
   "devDependencies": {
     "@netlify/plugin-nextjs": "^5.15.9",
