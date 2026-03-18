@@ -5,7 +5,6 @@ import dynamic from 'next/dynamic';
 import PageHero from '@/components/PageHero';
 import SectionReveal from '@/components/SectionReveal';
 import OrnamentalDivider from '@/components/OrnamentalDivider';
-import openingHoursData from '@/data/opening-hours.json';
 
 const LeafletMap = dynamic(() => import('@/components/LeafletMap'), { ssr: false });
 
@@ -127,20 +126,6 @@ export default function ContactPage() {
 
             {/* ═══ OPENING HOURS ═══ */}
             <SectionReveal delay={0.15}>
-              <h2 className="mb-2" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-green-deep)' }}>
-                Opening Hours
-              </h2>
-              <OrnamentalDivider className="my-4" />
-
-              <div className="space-y-3 mb-10">
-                {openingHoursData.schedule.map(item => (
-                  <div key={item.day} className="flex justify-between text-sm gap-4 pb-3" style={{ borderBottom: '1px solid rgba(201,168,76,0.15)' }}>
-                    <span style={{ fontFamily: 'var(--font-body)', color: 'var(--color-ink)', fontWeight: 500, minWidth: '100px' }}>{item.day}</span>
-                    <span style={{ fontFamily: 'var(--font-body)', color: 'var(--color-ink-soft)', textAlign: 'right' }}>{item.hours}</span>
-                  </div>
-                ))}
-              </div>
-
               {/* ═══ SAFEGUARDING BOX ═══ */}
               <div
                 className="p-6 rounded-lg"
