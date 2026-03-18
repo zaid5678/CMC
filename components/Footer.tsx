@@ -101,7 +101,7 @@ export default function Footer() {
               </p>
               <p className="text-sm" style={{ color: 'rgba(248,244,236,0.65)', fontFamily: 'var(--font-body)' }}>
                 <a
-                  href="https://maps.app.goo.gl/Fc9PfmyesNgfprwT7"
+                  href="https://maps.app.goo.gl/SKtCxw4k5V3cmt8L6"
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{ color: 'var(--color-gold-light)' }}

@@ -18,8 +18,8 @@ export default function LeafletMap({ height = 400, zoom = 16 }: LeafletMapProps)
       const L = (await import('leaflet')).default;
       // Leaflet CSS loaded via next.config or global import
 
-      const lat = 51.4847;
-      const lng = -0.1788;
+      const lat = 51.4807789;
+      const lng = -0.178287;
 
       const map = L.map(mapRef.current!, {
         center: [lat, lng],
@@ -68,7 +68,7 @@ export default function LeafletMap({ height = 400, zoom = 16 }: LeafletMapProps)
         <div style="font-family: 'DM Sans', sans-serif; padding: 8px;">
           <strong style="font-family: Georgia, serif; color: #1E5631; font-size: 14px;">Chelsea Muslim Community</strong><br>
           <span style="color: #3D3020; font-size: 12px;">14 Blantyre St, SW10 0DS</span><br>
-          <a href="https://maps.app.goo.gl/Fc9PfmyesNgfprwT7" target="_blank" rel="noopener noreferrer"
+          <a href="https://maps.app.goo.gl/SKtCxw4k5V3cmt8L6" target="_blank" rel="noopener noreferrer"
              style="color: #C9A84C; font-size: 12px; text-decoration: none; display: inline-block; margin-top: 6px;">
             Get Directions →
           </a>

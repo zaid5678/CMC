@@ -117,12 +117,9 @@ export default function ContactPage() {
                     <p className="text-sm font-semibold mb-1" style={{ fontFamily: 'var(--font-body)', color: 'var(--color-ink)' }}>
                       Nearest Bus Routes
                     </p>
-                    <ul className="text-sm space-y-1" style={{ fontFamily: 'var(--font-body)', color: 'var(--color-ink-soft)' }}>
-                      <li><span style={{ color: 'var(--color-ink)' }}>328</span> — King&apos;s Road / Worlds End (closest stop)</li>
-                      <li><span style={{ color: 'var(--color-ink)' }}>22</span> — King&apos;s Road (Putney to Piccadilly)</li>
-                      <li><span style={{ color: 'var(--color-ink)' }}>11</span> — King&apos;s Road (Hammersmith to Liverpool Street)</li>
-                      <li><span style={{ color: 'var(--color-ink)' }}>319</span> — Sloane Square to Streatham</li>
-                    </ul>
+                    <p className="text-sm" style={{ fontFamily: 'var(--font-body)', color: 'var(--color-ink-soft)' }}>
+                      <span style={{ color: 'var(--color-ink)', fontWeight: 500 }}>11, N11, 22, N22, 328, C3</span>
+                    </p>
                   </div>
                 </div>
               </div>
