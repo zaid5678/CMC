@@ -1,0 +1,23 @@
+[
+  {
+    "id": "imam-ibrahim",
+    "name": "Imam Ibrahim Al-Hussain",
+    "role": "Resident Imam & Religious Director",
+    "bio": "Imam Ibrahim has led the Chelsea Muslim Community for over a decade, bringing warmth, scholarship, and pastoral care to our congregation. A graduate of Al-Azhar University and the Markfield Institute of Higher Education, he leads all five daily prayers, Friday khutbahs, and our Quran education programme. He is known throughout West London for his approachable, inclusive style of Islamic leadership.",
+    "initials": "IA"
+  },
+  {
+    "id": "admin-fatima",
+    "name": "Fatima Osman",
+    "role": "Community Administrator",
+    "bio": "Fatima is the heart of our day-to-day operations, managing everything from class registrations and event coordination to safeguarding and welfare referrals. A Chelsea resident herself, she brings deep knowledge of the local community and a tireless commitment to ensuring CMC is a welcoming, well-run institution for everyone who comes through our doors.",
+    "initials": "FO"
+  },
+  {
+    "id": "outreach-yusuf",
+    "name": "Yusuf Karim",
+    "role": "Community Outreach Officer",
+    "bio": "Yusuf coordinates CMC's community engagement work — from our food bank partnership and welfare support to interfaith dialogue and local school visits. He works closely with Chelsea & Westminster NHS Trust, Kensington & Chelsea Council, and local charities to ensure our most vulnerable community members receive the support they need.",
+    "initials": "YK"
+  }
+]

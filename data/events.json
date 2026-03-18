@@ -1,0 +1,56 @@
+[
+  {
+    "id": "ramadan-iftar-2025",
+    "title": "Ramadan Iftar Night",
+    "date": "2025-03-15",
+    "time": "Sunset (approx. 6:15pm)",
+    "category": "Ramadan",
+    "description": "Join us for our beloved community iftar as we break our fast together in the spirit of unity and gratitude. All are welcome — Muslim and non-Muslim neighbours alike. Bring a dish to share or simply come as you are.",
+    "imageAlt": "Community gathering for iftar during Ramadan"
+  },
+  {
+    "id": "quran-reading-circle",
+    "title": "Quran Reading Circle",
+    "date": "2025-04-06",
+    "time": "10:00am – 12:00pm",
+    "category": "Education",
+    "description": "A gentle, welcoming weekly gathering for adults of all levels to read, reflect on, and discuss passages from the Holy Quran. Led by our resident Imam, this circle is open to beginners and those returning to regular practice.",
+    "imageAlt": "Adults studying the Quran together in a circle"
+  },
+  {
+    "id": "community-fundraiser-dinner",
+    "title": "Community Fundraiser Dinner",
+    "date": "2025-05-10",
+    "time": "7:00pm – 10:00pm",
+    "category": "Community",
+    "description": "Our annual fundraising dinner supports the mosque's maintenance, Quran education programme, and community welfare fund. Featuring a keynote address, three-course meal, and a live auction. Tickets available at the mosque.",
+    "imageAlt": "Elegant community fundraiser dinner setting"
+  },
+  {
+    "id": "sisters-wellbeing-circle",
+    "title": "Sisters' Wellbeing Circle",
+    "date": "2025-04-19",
+    "time": "2:00pm – 4:00pm",
+    "category": "Sisters",
+    "description": "A safe, warm space for sisters to connect, share, and support one another. This month's gathering focuses on mental wellbeing and spiritual resilience, with light refreshments. Childcare available on request.",
+    "imageAlt": "Muslim women in a community gathering"
+  },
+  {
+    "id": "youth-football-deen",
+    "title": "Youth Football & Deen",
+    "date": "2025-04-26",
+    "time": "11:00am – 2:00pm",
+    "category": "Youth",
+    "description": "A Saturday morning combining five-a-side football at Cremorne Gardens with a short, engaging talk on character and purpose in Islam. Open to all young men aged 12–21. Equipment provided. No prior booking needed.",
+    "imageAlt": "Young Muslim men playing football together"
+  },
+  {
+    "id": "eid-celebration",
+    "title": "Eid ul-Fitr Celebration",
+    "date": "2025-03-30",
+    "time": "Following Eid prayer",
+    "category": "Community",
+    "description": "Celebrate the joy of Eid with your CMC family. The celebration follows our Eid prayer and includes traditional sweets, activities for children, and the warmth of community. Open to all — dress in your finest!",
+    "imageAlt": "Joyful Eid celebration with community members in colourful attire"
+  }
+]

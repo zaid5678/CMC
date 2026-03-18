@@ -1,0 +1,58 @@
+[
+  {
+    "id": "daily-prayers",
+    "title": "Daily Prayers",
+    "icon": "minaret",
+    "shortDescription": "Five daily prayers open to all, in a space of peace and devotion.",
+    "fullDescription": "Chelsea Muslim Community holds all five daily prayers — Fajr, Dhuhr, Asr, Maghrib, and Isha — every day of the year. Our prayer hall accommodates 150 worshippers, with a separate, well-appointed sisters' gallery. Full wudu (ablution) facilities are available. The mosque is open from 30 minutes before Fajr to 30 minutes after Isha. All are welcome, whether you pray regularly or are simply seeking a moment of reflection."
+  },
+  {
+    "id": "jumuah",
+    "title": "Jumu'ah (Friday Prayer)",
+    "icon": "crescent",
+    "shortDescription": "The blessed gathering of the week — a khutbah in English and Arabic, followed by prayer.",
+    "fullDescription": "Jumu'ah (Friday prayer) is the centrepiece of our weekly congregation. The khutbah (sermon) begins at 12:00pm and is delivered in English with Arabic passages, ensuring it is accessible to our diverse community. The Iqama (prayer) follows at 12:20pm. Overflow arrangements are in place for busy Fridays — please arrive by 11:55am to ensure a place in the main hall. Sisters are warmly welcomed via the dedicated entrance on Blantyre Street."
+  },
+  {
+    "id": "quran-education",
+    "title": "Quran Education",
+    "icon": "book",
+    "shortDescription": "Classes for children and adults — from first letters to fluent recitation.",
+    "fullDescription": "Our Quran Education programme is one of CMC's most cherished offerings. Children aged 6–16 attend weekday evening classes (Monday to Thursday, 5:00–6:30pm) focusing on correct recitation with tajweed, memorisation of shorter surahs, and Islamic character. Adult classes run on Saturday mornings (9:30–11:00am) and cater for complete beginners through to those seeking to perfect their recitation. All teachers hold formal ijazah (chain of certification) in Quranic recitation. To register, please use the contact form or speak to our administrator."
+  },
+  {
+    "id": "arabic-language",
+    "title": "Arabic Language",
+    "icon": "book",
+    "shortDescription": "Beginner and intermediate Arabic — unlock the language of the Quran.",
+    "fullDescription": "Understanding Arabic enriches one's relationship with prayer, Quran, and Islamic knowledge. CMC offers Arabic language classes at beginner level (Monday evenings, 7:00–8:30pm) covering the alphabet, basic vocabulary, and sentence structure, and intermediate level (Wednesday evenings, 7:00–8:30pm) focused on Quranic grammar (nahw and sarf). Both courses run in 12-week terms with a brief break between. Class sizes are kept small — maximum 12 students — to ensure individual attention. Contact us to check availability."
+  },
+  {
+    "id": "nikah",
+    "title": "Nikah Ceremonies",
+    "icon": "hands",
+    "shortDescription": "Islamic marriage solemnisation with dignity, warmth, and proper Islamic procedure.",
+    "fullDescription": "CMC performs Nikah (Islamic marriage) ceremonies throughout the year. Imam Ibrahim is experienced in conducting ceremonies for couples from a wide range of backgrounds and cultural traditions. To arrange a Nikah at CMC, both parties should contact us at least four weeks in advance. We will need proof of identity, confirmation of single status, and the presence of a wali (guardian) for the bride, along with two witnesses. The ceremony can be conducted in English, Arabic, or both. We do not charge a fixed fee for this service — a donation to CMC is greatly appreciated. Please note that a Nikah does not constitute a legal marriage under English law; couples wishing to be legally married should also register at Chelsea Register Office."
+  },
+  {
+    "id": "janazah",
+    "title": "Janazah Services",
+    "icon": "hands",
+    "shortDescription": "Compassionate support for families at the most difficult of times.",
+    "fullDescription": "CMC provides full Janazah (funeral) services in accordance with Islamic practice. Imam Ibrahim is available for Janazah prayer at the mosque or at the graveside, and can assist families with the correct Islamic procedures during bereavement. We work with local Islamic funeral directors and can advise on ghusl (ritual washing) arrangements, which must be performed before the prayer. In urgent cases, please call our 24-hour bereavement contact number, available from the mosque administrator. We believe that every Muslim in our community deserves to be farewelled with dignity, regardless of circumstance."
+  },
+  {
+    "id": "community-welfare",
+    "title": "Community Welfare",
+    "icon": "hands",
+    "shortDescription": "Practical support for those who need it — food, signposting, and a listening ear.",
+    "fullDescription": "CMC operates a weekly food bank in partnership with The Trussell Trust and Chelsea & Westminster Food Bank, distributing parcels every Saturday morning (10:00am–12:00pm). We also provide welfare support and signposting for community members facing financial hardship, housing difficulty, or mental health challenges, working with Kensington & Chelsea Council's welfare team and local charities. Our Outreach Officer is available to speak confidentially after any prayer time. All support is provided with dignity and discretion, and is open to the wider Chelsea community regardless of faith."
+  },
+  {
+    "id": "ramadan-programme",
+    "title": "Ramadan Programme",
+    "icon": "crescent",
+    "shortDescription": "A full month of community, prayer, and spiritual renewal — the highlight of our year.",
+    "fullDescription": "Ramadan at CMC is a time of extraordinary community spirit. Throughout the holy month, we host community iftar on Fridays, Saturdays, and Sundays (all are welcome — please bring a dish to share). Tarawih prayers are held nightly, led by Imam Ibrahim, beginning at 9:00pm and lasting approximately 90 minutes. Laylat al-Qadr programme in the final ten nights includes extended night prayers, dhikr circles, and an overnight stay for brothers. The full Ramadan timetable — including accurate Suhoor and Iftar times calculated for SW10 — is available from the mosque from early Sha'ban each year. Times are updated seasonally."
+  }
+]

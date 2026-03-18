@@ -1,0 +1,17 @@
+{
+  "note": "The mosque is open from 30 minutes before Fajr to 30 minutes after Isha each day. The times below reflect general office and administration hours.",
+  "schedule": [
+    { "day": "Monday",    "hours": "Prayer times + 5:00pm–8:30pm (evening classes)" },
+    { "day": "Tuesday",   "hours": "Prayer times only" },
+    { "day": "Wednesday", "hours": "Prayer times + 7:00pm–9:00pm (Arabic class)" },
+    { "day": "Thursday",  "hours": "Prayer times + 5:00pm–6:30pm (Quran class)" },
+    { "day": "Friday",    "hours": "Prayer times + 11:45am–1:00pm (Jumu'ah 12:20pm)" },
+    { "day": "Saturday",  "hours": "9:00am–1:00pm (admin, food bank, classes)" },
+    { "day": "Sunday",    "hours": "10:00am–12:00pm (by appointment)" }
+  ],
+  "jumua": {
+    "khutbahTime": "12:00pm",
+    "prayerTime": "12:20pm (Iqama)",
+    "note": "Please arrive by 11:55am on Fridays to ensure a place in the main hall."
+  }
+}
