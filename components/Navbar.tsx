@@ -77,7 +77,6 @@ export default function Navbar() {
         <span className="hidden sm:block" style={{ color: 'rgba(232,201,122,0.8)', fontFamily: 'var(--font-body)', fontSize: '0.75rem' }}>
           Assalamu Alaikum — Welcome to Chelsea Muslim Community
         </span>
-        <NextPrayerBadge />
       </div>
 
       {/* Main Navbar */}
