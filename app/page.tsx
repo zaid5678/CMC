@@ -196,21 +196,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══════════════════════════ PRAYER TIMES STRIP ═══════════════════════════ */}
-      <section
-        className="py-16 px-6 lg:px-12 relative overflow-hidden"
-        style={{ background: 'var(--color-green-deep)' }}
-        aria-labelledby="prayer-times-strip-heading"
-      >
-        <GeometricPattern variant="hexagons" opacity={0.04} color="gold" />
-        <div className="relative z-10 max-w-7xl mx-auto text-center">
-          <SectionReveal>
-            <Link href="/prayer-times" className="btn-gold" style={{ fontSize: '1rem', padding: '14px 36px' }}>
-              View Prayer Times
-            </Link>
-          </SectionReveal>
-        </div>
-      </section>
 
       {/* ═══════════════════════════ ABOUT SNAPSHOT ═══════════════════════════ */}
       <section
