@@ -17,30 +17,6 @@ const NAV_LINKS = [
   { href: '/contact',      label: 'Contact' },
 ];
 
-function NextPrayerBadge() {
-  const [nextPrayer, setNextPrayer] = useState<{ name: string; time: string } | null>(null);
-
-  useEffect(() => {
-    const load = () => {
-      fetch('/api/prayer-times')
-        .then(r => r.json())
-        .then(d => {
-          if (d.nextPrayer) setNextPrayer(d.nextPrayer);
-        })
-        .catch(() => {});
-    };
-    load();
-    const interval = setInterval(load, 60000);
-    return () => clearInterval(interval);
-  }, []);
-
-  if (!nextPrayer) return null;
-  return (
-    <span style={{ color: 'var(--color-gold-light)', fontFamily: 'var(--font-body)', fontSize: '0.78rem' }}>
-      Next: <strong style={{ color: 'var(--color-gold-rich)' }}>{nextPrayer.name}</strong> at {nextPrayer.time}
-    </span>
-  );
-}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
