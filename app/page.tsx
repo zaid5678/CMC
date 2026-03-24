@@ -6,7 +6,6 @@ import SectionReveal from '@/components/SectionReveal';
 import OrnamentalDivider from '@/components/OrnamentalDivider';
 import EventCard from '@/components/EventCard';
 import GeometricPattern from '@/components/GeometricPattern';
-import PrayerTimesWidget from '@/components/PrayerTimesWidget';
 import eventsData from '@/data/events.json';
 import announcementsData from '@/data/announcements.json';
 import openingHours from '@/data/opening-hours.json';
@@ -204,15 +203,12 @@ export default function HomePage() {
         aria-labelledby="prayer-times-strip-heading"
       >
         <GeometricPattern variant="hexagons" opacity={0.04} color="gold" />
-        <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="relative z-10 max-w-7xl mx-auto text-center">
           <SectionReveal>
-            <PrayerTimesWidget />
-          </SectionReveal>
-          <div className="text-center mt-8">
-            <Link href="/prayer-times" className="btn-outline-gold" style={{ fontSize: '0.85rem', padding: '10px 24px' }}>
-              Full Monthly Timetable →
+            <Link href="/prayer-times" className="btn-gold" style={{ fontSize: '1rem', padding: '14px 36px' }}>
+              View Prayer Times
             </Link>
-          </div>
+          </SectionReveal>
         </div>
       </section>
 
