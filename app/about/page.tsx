@@ -5,7 +5,7 @@ import PageHero from '@/components/PageHero';
 import SectionReveal from '@/components/SectionReveal';
 import OrnamentalDivider from '@/components/OrnamentalDivider';
 import ArabicVerse from '@/components/ArabicVerse';
-import teamData from '@/data/team.json';
+// import teamData from '@/data/team.json'; // restore with Our Team section
 
 export const metadata: Metadata = {
   title: 'About Us',
@@ -138,8 +138,8 @@ export default function AboutPage() {
         source="Quran 3:104"
       />
 
-      {/* ═══ THE TEAM ═══ */}
-      <section className="section-padding px-6 lg:px-12" style={{ background: 'var(--color-ivory)' }} aria-labelledby="team-heading">
+      {/* ═══ THE TEAM (hidden — uncomment to restore) ═══ */}
+      {/* <section className="section-padding px-6 lg:px-12" style={{ background: 'var(--color-ivory)' }} aria-labelledby="team-heading">
         <div className="max-w-7xl mx-auto">
           <SectionReveal>
             <div className="text-center mb-12">
@@ -178,7 +178,7 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ═══ VALUES ═══ */}
       <section className="section-padding px-6 lg:px-12" style={{ background: 'var(--color-ivory-dark)' }} aria-labelledby="values-heading">
