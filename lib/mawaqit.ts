@@ -1,7 +1,14 @@
 /**
- * Mawaqit scraper — mirrors what mrsofiane/mawaqit-api does in Python.
- * Fetches the mosque page, extracts the embedded `confData` JSON object,
- * and returns today's times + the full 12-month calendar.
+ * Mawaqit scraper — fetches the mosque page, extracts the embedded
+ * `confData` JSON object, and returns prayer times for today and
+ * the full monthly calendar.
+ *
+ * Key data structure (confirmed by inspection of live page):
+ *   confData.times      = [fajr, dhuhr, asr, maghrib, isha]  (5 adhan times for today)
+ *   confData.shuruq     = "HH:MM"                             (today's sunrise)
+ *   confData.jumua      = "HH:MM"                             (Friday iqama time)
+ *   confData.calendar   = array[12] of objects keyed "1"–"31"
+ *                         each day: [fajr, shuruq, dhuhr, asr, maghrib, isha]
  */
 
 const MOSQUE_SLUG = 'chelsea-muslim-community-hub-london-sw100ds-united-kingdom';
@@ -14,8 +21,7 @@ export interface MawaqitToday {
   asr: string;
   maghrib: string;
   isha: string;
-  jumua: string | null;  // Friday iqama, e.g. "12:20"
-  jumua2: string | null;
+  jumua: string | null;
 }
 
 export interface MawaqitCalendarDay {
@@ -27,18 +33,18 @@ export interface MawaqitCalendarDay {
   isha: string;
 }
 
-// In-memory cache keyed by calendar date so it refreshes each new day
-let _cache: { data: ConfData; dateKey: string } | null = null;
-
 interface ConfData {
-  times: string[];           // [fajr, dhuhr, asr, maghrib, isha] for today
-  shuruq: string;            // today's sunrise
+  times: string[];
+  shuruq: string;
   jumua: string | null;
   jumua2?: string | null;
-  // 12-month array; each month is an array of day-arrays of time strings
-  calendar: string[][][] | Record<string, string[][]>;
+  // array[12], each element is an object keyed "1"–"31"
+  calendar: Array<Record<string, string[]>>;
   [key: string]: unknown;
 }
+
+// Cache keyed by calendar date — refreshes automatically each new day
+let _cache: { data: ConfData; dateKey: string } | null = null;
 
 function todayKey() {
   const d = new Date();
@@ -55,7 +61,6 @@ async function loadConfData(): Promise<ConfData> {
       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
       'Accept-Language': 'en-GB,en;q=0.9',
     },
-    // disable Next.js static caching — we use our own date-keyed cache
     cache: 'no-store',
   });
 
@@ -63,14 +68,15 @@ async function loadConfData(): Promise<ConfData> {
 
   const html = await res.text();
 
-  // Locate "var confData = {" and balance braces to extract the full JSON object
-  const searchStr = 'var confData = ';
+  // Page uses `let confData = {…};`
+  const searchStr = 'let confData = ';
   const startIdx = html.indexOf(searchStr);
   if (startIdx === -1) throw new Error('confData variable not found in Mawaqit page');
 
   const jsonStart = html.indexOf('{', startIdx);
   if (jsonStart === -1) throw new Error('confData JSON object not found');
 
+  // Balance braces to find the end of the JSON object
   let depth = 0;
   let i = jsonStart;
   for (; i < html.length; i++) {
@@ -81,14 +87,12 @@ async function loadConfData(): Promise<ConfData> {
     }
   }
 
-  const jsonStr = html.slice(jsonStart, i + 1);
-  const data = JSON.parse(jsonStr) as ConfData;
-
+  const data = JSON.parse(html.slice(jsonStart, i + 1)) as ConfData;
   _cache = { data, dateKey: key };
   return data;
 }
 
-/** Returns today's 6 prayer times + Jumu'ah iqama */
+/** Today's 6 prayer times + Jumu'ah iqama */
 export async function getMawaqitToday(): Promise<MawaqitToday> {
   const d = await loadConfData();
   return {
@@ -98,49 +102,42 @@ export async function getMawaqitToday(): Promise<MawaqitToday> {
     asr:     d.times[2] ?? '',
     maghrib: d.times[3] ?? '',
     isha:    d.times[4] ?? '',
-    jumua:   d.jumua  ?? null,
-    jumua2:  d.jumua2 ?? null,
+    jumua:   d.jumua    ?? null,
   };
 }
 
 /**
- * Returns the prayer times for every day of the requested month.
- * monthNumber is 1-based (1 = January, …, 12 = December).
+ * Prayer times for every day of the given month.
+ * monthNumber is 1-based (1 = January … 12 = December).
+ *
+ * calendar[monthIdx] is an object keyed by "1"–"31" (1-indexed day numbers).
+ * Each value is [fajr, shuruq, dhuhr, asr, maghrib, isha].
  */
 export async function getMawaqitCalendar(monthNumber: number): Promise<MawaqitCalendarDay[]> {
   const d = await loadConfData();
 
-  // confData.calendar is either an array-of-12-months or an object keyed by month number
-  let monthData: string[][] = [];
+  const monthObj = d.calendar[monthNumber - 1]; // 0-indexed month
+  if (!monthObj || typeof monthObj !== 'object') return [];
 
-  if (Array.isArray(d.calendar)) {
-    monthData = (d.calendar[monthNumber - 1] ?? []) as string[][];
-  } else if (d.calendar && typeof d.calendar === 'object') {
-    const key = String(monthNumber);
-    const raw = (d.calendar as Record<string, string[][]>)[key] ?? [];
-    monthData = raw;
+  const days: MawaqitCalendarDay[] = [];
+
+  // Keys are "1", "2", … "31" — iterate in order
+  const dayNumbers = Object.keys(monthObj)
+    .map(Number)
+    .sort((a, b) => a - b);
+
+  for (const dayNum of dayNumbers) {
+    const t = monthObj[String(dayNum)] ?? [];
+    // Format: [fajr, shuruq, dhuhr, asr, maghrib, isha]
+    days.push({
+      fajr:    t[0] ?? '',
+      sunrise: t[1] ?? '',
+      dhuhr:   t[2] ?? '',
+      asr:     t[3] ?? '',
+      maghrib: t[4] ?? '',
+      isha:    t[5] ?? '',
+    });
   }
 
-  return monthData.map((dayTimes: string[]) => {
-    // Some mosques have 5 times [fajr, dhuhr, asr, maghrib, isha]
-    // Others include shuruq as index 1 making 6 total
-    if (dayTimes.length >= 6) {
-      return {
-        fajr:    dayTimes[0] ?? '',
-        sunrise: dayTimes[1] ?? '',
-        dhuhr:   dayTimes[2] ?? '',
-        asr:     dayTimes[3] ?? '',
-        maghrib: dayTimes[4] ?? '',
-        isha:    dayTimes[5] ?? '',
-      };
-    }
-    return {
-      fajr:    dayTimes[0] ?? '',
-      sunrise: '',
-      dhuhr:   dayTimes[1] ?? '',
-      asr:     dayTimes[2] ?? '',
-      maghrib: dayTimes[3] ?? '',
-      isha:    dayTimes[4] ?? '',
-    };
-  });
+  return days;
 }
