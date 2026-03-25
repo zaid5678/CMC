@@ -23,7 +23,7 @@ export default function PrayerTimesPage() {
         <div className="max-w-7xl mx-auto">
           <SectionReveal>
             <div
-              className="relative overflow-hidden rounded-lg p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8"
+              className="relative overflow-hidden rounded-lg p-8 md:p-12 text-center"
               style={{ background: 'var(--color-green-deep)' }}
             >
               <svg className="absolute inset-0 w-full h-full opacity-5 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
@@ -35,35 +35,18 @@ export default function PrayerTimesPage() {
                 <rect width="100%" height="100%" fill="url(#jumuah-pattern)"/>
               </svg>
 
-              <div className="relative z-10">
+              <div className="relative z-10 max-w-xl mx-auto">
                 <p className="text-xs font-medium tracking-widest uppercase mb-2" style={{ color: 'var(--color-gold-rich)', fontFamily: 'var(--font-body)' }}>
                   Every Friday
                 </p>
                 <h2 className="text-3xl md:text-4xl font-light italic mb-3" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-ivory)' }}>
                   {"Jumu'ah (Friday Prayer)"}
                 </h2>
-                <p className="text-base max-w-md" style={{ color: 'rgba(248,244,236,0.75)', fontFamily: 'var(--font-body)' }}>
+                <p className="text-base" style={{ color: 'rgba(248,244,236,0.75)', fontFamily: 'var(--font-body)' }}>
                   The weekly congregation — the most blessed gathering of the Islamic week. Khutbah in English and Arabic. All brothers and sisters warmly welcome.
                 </p>
               </div>
-
-              <div className="relative z-10 flex flex-col sm:flex-row gap-6 md:gap-8 text-center">
-                <div>
-                  <p className="text-xs tracking-widest uppercase mb-1" style={{ color: 'rgba(201,168,76,0.7)', fontFamily: 'var(--font-body)' }}>Khutbah begins</p>
-                  <p className="text-4xl font-semibold" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-gold-rich)' }}>12:00pm</p>
-                </div>
-                <div className="w-px self-stretch" style={{ background: 'rgba(201,168,76,0.3)' }} aria-hidden="true"/>
-                <div>
-                  <p className="text-xs tracking-widest uppercase mb-1" style={{ color: 'rgba(201,168,76,0.7)', fontFamily: 'var(--font-body)' }}>Prayer (Iqama)</p>
-                  <p className="text-4xl font-semibold" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-gold-light)' }}>12:20pm</p>
-                </div>
-              </div>
             </div>
-          </SectionReveal>
-          <SectionReveal delay={0.1}>
-            <p className="mt-4 text-sm text-center italic" style={{ color: 'var(--color-ink-soft)', fontFamily: 'var(--font-body)' }}>
-              Please arrive by 11:55am on Fridays to ensure a place in the main hall
-            </p>
           </SectionReveal>
         </div>
       </section>
@@ -73,7 +56,7 @@ export default function PrayerTimesPage() {
         <div className="max-w-4xl mx-auto">
           <SectionReveal>
             <h2 className="mb-2 text-center" style={{ color: 'var(--color-ink)', fontFamily: 'var(--font-display)' }}>
-              Daily Prayer Timetable
+              {"Today's Prayer Times"}
             </h2>
             <OrnamentalDivider className="my-4" />
             <div
@@ -85,7 +68,7 @@ export default function PrayerTimesPage() {
                 frameBorder={0}
                 scrolling="no"
                 title="Chelsea Muslim Community prayer times"
-                style={{ width: '100%', height: '120px', display: 'block' }}
+                style={{ width: '100%', height: '170px', display: 'block' }}
               />
             </div>
           </SectionReveal>
