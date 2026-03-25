@@ -68,29 +68,26 @@ export default function PrayerTimesPage() {
         </div>
       </section>
 
-      {/* ═══ MAWAQIT LINK ═══ */}
+      {/* ═══ MAWAQIT WIDGET ═══ */}
       <section className="section-padding px-6 lg:px-12" style={{ background: 'var(--color-ivory-dark)' }}>
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto">
           <SectionReveal>
-            <h2 className="mb-2" style={{ color: 'var(--color-ink)', fontFamily: 'var(--font-display)' }}>
+            <h2 className="mb-2 text-center" style={{ color: 'var(--color-ink)', fontFamily: 'var(--font-display)' }}>
               Daily Prayer Timetable
             </h2>
             <OrnamentalDivider className="my-4" />
-            <p className="text-sm mb-8" style={{ color: 'var(--color-ink-soft)', fontFamily: 'var(--font-body)' }}>
-              Up-to-date Fajr, Dhuhr, Asr, Maghrib and Isha times for Chelsea SW10 are published on our Mawaqit page.
-            </p>
-            <a
-              href="https://mawaqit.net/en/m/chelsea-muslim-community-hub-london-sw100ds-united-kingdom"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-gold inline-flex items-center gap-3"
-              style={{ fontSize: '1rem', padding: '14px 36px' }}
+            <div
+              className="mt-8 overflow-hidden rounded-lg"
+              style={{ border: '1px solid rgba(201,168,76,0.3)' }}
             >
-              View Prayer Times on Mawaqit
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </a>
+              <iframe
+                src="//mawaqit.net/en/w/chelsea-muslim-community-hub-london-sw100ds-united-kingdom?showOnly5PrayerTimes=0"
+                frameBorder={0}
+                scrolling="no"
+                title="Chelsea Muslim Community prayer times"
+                style={{ width: '100%', height: '120px', display: 'block' }}
+              />
+            </div>
           </SectionReveal>
         </div>
       </section>
