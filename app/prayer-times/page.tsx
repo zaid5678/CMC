@@ -16,11 +16,10 @@ interface TodayData {
 }
 
 interface CalendarDay {
-  fajr: string; sunrise: string; dhuhr: string;
-  asr: string; maghrib: string; isha: string;
+  fajr: string; dhuhr: string; asr: string; maghrib: string; isha: string;
 }
 
-const PRAYERS = [
+const TODAY_PRAYERS = [
   { key: 'fajr',    label: 'Fajr' },
   { key: 'sunrise', label: 'Sunrise' },
   { key: 'dhuhr',   label: 'Dhuhr' },
@@ -29,8 +28,10 @@ const PRAYERS = [
   { key: 'isha',    label: 'Isha' },
 ] as const;
 
+const CALENDAR_PRAYERS = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'] as const;
+
 function getTodayIndex() {
-  return new Date().getDate() - 1; // 0-based
+  return new Date().getDate() - 1; // 0-based; calendar array starts at day 1
 }
 
 export default function PrayerTimesPage() {
@@ -63,13 +64,16 @@ export default function PrayerTimesPage() {
         image={{ src: '/images/inside_pic.jpg', alt: 'Prayer hall interior of Chelsea Muslim Community mosque' }}
       />
 
-      {/* ═══ TODAY'S PRAYER TIMES ═══ */}
+      {/* ═══ TODAY'S JAMAAT TIMES ═══ */}
       <section className="px-6 lg:px-12 py-12" style={{ background: 'var(--color-ivory)' }}>
         <div className="max-w-5xl mx-auto">
           <SectionReveal>
-            <h2 className="text-center mb-2" style={{ color: 'var(--color-ink)', fontFamily: 'var(--font-display)' }}>
+            <h2 className="text-center mb-1" style={{ color: 'var(--color-ink)', fontFamily: 'var(--font-display)' }}>
               {"Today's Prayer Times"}
             </h2>
+            <p className="text-center text-sm mb-2" style={{ color: 'var(--color-ink-soft)', fontFamily: 'var(--font-body)' }}>
+              Jamaat times
+            </p>
             <OrnamentalDivider className="my-4" />
 
             {loading ? (
@@ -80,40 +84,29 @@ export default function PrayerTimesPage() {
               </div>
             ) : today ? (
               <div className="grid grid-cols-3 sm:grid-cols-6 gap-3 mt-8">
-                {PRAYERS.map(({ key, label }) => {
-                  const isSunrise = key === 'sunrise';
-                  return (
-                    <div
-                      key={key}
-                      className="flex flex-col items-center justify-center rounded-lg py-5 px-2 text-center"
-                      style={{
-                        background: isSunrise ? 'rgba(201,168,76,0.06)' : 'var(--color-green-deep)',
-                        border: isSunrise
-                          ? '1px solid rgba(201,168,76,0.25)'
-                          : '1px solid rgba(201,168,76,0.2)',
-                      }}
+                {TODAY_PRAYERS.map(({ key, label }) => (
+                  <div
+                    key={key}
+                    className="flex flex-col items-center justify-center rounded-lg py-5 px-2 text-center"
+                    style={{
+                      background: 'var(--color-green-deep)',
+                      border: '1px solid rgba(201,168,76,0.2)',
+                    }}
+                  >
+                    <span
+                      className="block text-xs tracking-widest uppercase mb-2"
+                      style={{ fontFamily: 'var(--font-body)', color: 'rgba(201,168,76,0.75)' }}
                     >
-                      <span
-                        className="block text-xs tracking-widest uppercase mb-2"
-                        style={{
-                          fontFamily: 'var(--font-body)',
-                          color: isSunrise ? 'var(--color-ink-soft)' : 'rgba(201,168,76,0.75)',
-                        }}
-                      >
-                        {label}
-                      </span>
-                      <span
-                        className="text-xl font-semibold"
-                        style={{
-                          fontFamily: 'var(--font-display)',
-                          color: isSunrise ? 'var(--color-ink)' : 'var(--color-gold-light)',
-                        }}
-                      >
-                        {today[key] || '—'}
-                      </span>
-                    </div>
-                  );
-                })}
+                      {label}
+                    </span>
+                    <span
+                      className="text-xl font-semibold"
+                      style={{ fontFamily: 'var(--font-display)', color: 'var(--color-gold-light)' }}
+                    >
+                      {today[key] || '—'}
+                    </span>
+                  </div>
+                ))}
               </div>
             ) : (
               <p className="text-center mt-8 text-sm" style={{ color: 'var(--color-ink-soft)', fontFamily: 'var(--font-body)' }}>
@@ -161,15 +154,15 @@ export default function PrayerTimesPage() {
         </div>
       </section>
 
-      {/* ═══ MONTHLY TIMETABLE ═══ */}
+      {/* ═══ MONTHLY JAMAAT TIMETABLE ═══ */}
       <section className="section-padding px-6 lg:px-12" style={{ background: 'var(--color-ivory-dark)' }}>
         <div className="max-w-5xl mx-auto">
           <SectionReveal>
-            <h2 className="text-center mb-2" style={{ color: 'var(--color-ink)', fontFamily: 'var(--font-display)' }}>
+            <h2 className="text-center mb-1" style={{ color: 'var(--color-ink)', fontFamily: 'var(--font-display)' }}>
               Monthly Timetable
             </h2>
             <p className="text-center text-sm mb-2" style={{ color: 'var(--color-ink-soft)', fontFamily: 'var(--font-body)' }}>
-              {monthName} · Chelsea SW10
+              {monthName} · Jamaat times · Chelsea SW10
             </p>
             <OrnamentalDivider className="my-4" />
           </SectionReveal>
@@ -186,7 +179,7 @@ export default function PrayerTimesPage() {
                   <table className="w-full" style={{ borderCollapse: 'collapse', background: 'var(--color-surface)' }}>
                     <thead>
                       <tr style={{ background: 'var(--color-green-deep)' }}>
-                        {['Day', 'Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'].map(h => (
+                        {['Day', 'Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'].map(h => (
                           <th key={h} className="px-3 py-3 text-left text-xs font-medium tracking-widest uppercase"
                             style={{ color: 'var(--color-gold-light)', fontFamily: 'var(--font-body)' }}>
                             {h}
@@ -211,7 +204,7 @@ export default function PrayerTimesPage() {
                               {i + 1}
                               {isToday && <span className="ml-2 text-xs px-1.5 py-0.5 rounded" style={{ color: 'var(--color-ink)', background: 'var(--color-gold-rich)' }}>Today</span>}
                             </td>
-                            {(['fajr', 'sunrise', 'dhuhr', 'asr', 'maghrib', 'isha'] as const).map(p => (
+                            {CALENDAR_PRAYERS.map(p => (
                               <td key={p} className="px-3 py-2.5 text-sm" style={{ fontFamily: 'var(--font-body)', color: 'var(--color-ink-soft)' }}>
                                 {day[p] || '—'}
                               </td>
@@ -241,7 +234,7 @@ export default function PrayerTimesPage() {
                           {isToday && <span className="ml-2 text-xs px-1.5 py-0.5 rounded" style={{ color: 'var(--color-ink)', background: 'var(--color-gold-rich)' }}>Today</span>}
                         </p>
                         <div className="grid grid-cols-3 gap-3">
-                          {(['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'] as const).map(p => (
+                          {CALENDAR_PRAYERS.map(p => (
                             <div key={p}>
                               <span className="block uppercase tracking-wider" style={{ color: 'var(--color-ink-soft)', fontFamily: 'var(--font-body)', fontSize: '0.65rem' }}>{p}</span>
                               <span style={{ fontFamily: 'var(--font-body)', color: 'var(--color-ink)', fontWeight: 500, fontSize: '0.9rem' }}>{day[p] || '—'}</span>

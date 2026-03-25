@@ -1,22 +1,22 @@
 /**
- * Mawaqit scraper — fetches the mosque page, extracts the embedded
- * `confData` JSON object, and returns prayer times for today and
- * the full monthly calendar.
+ * Mawaqit scraper — fetches the mosque page and extracts the embedded confData.
  *
- * Key data structure (confirmed by inspection of live page):
- *   confData.times      = [fajr, dhuhr, asr, maghrib, isha]  (5 adhan times for today)
- *   confData.shuruq     = "HH:MM"                             (today's sunrise)
- *   confData.jumua      = "HH:MM"                             (Friday iqama time)
- *   confData.calendar   = array[12] of objects keyed "1"–"31"
- *                         each day: [fajr, shuruq, dhuhr, asr, maghrib, isha]
+ * Confirmed data structure:
+ *   confData.times          = [fajr, dhuhr, asr, maghrib, isha]  — today's adhan times
+ *   confData.shuruq         = "HH:MM"                            — today's sunrise
+ *   confData.jumua          = "HH:MM"                            — Friday iqama time
+ *   confData.calendar       = array[12] — adhan times (not used for display)
+ *   confData.iqamaCalendar  = array[12], each element is an object keyed "1"–"31"
+ *                             *** KEY OFFSET: key "N" contains data for day N-1 ***
+ *                             Each day: [fajr, dhuhr, asr, maghrib, isha]
  */
 
 const MOSQUE_SLUG = 'chelsea-muslim-community-hub-london-sw100ds-united-kingdom';
 const MAWAQIT_URL = `https://mawaqit.net/fr/${MOSQUE_SLUG}`;
 
-export interface MawaqitToday {
+export interface MawaqitTodayIqama {
   fajr: string;
-  sunrise: string;
+  sunrise: string;  // from confData.shuruq — no iqama for sunrise
   dhuhr: string;
   asr: string;
   maghrib: string;
@@ -24,9 +24,8 @@ export interface MawaqitToday {
   jumua: string | null;
 }
 
-export interface MawaqitCalendarDay {
+export interface MawaqitIqamaDay {
   fajr: string;
-  sunrise: string;
   dhuhr: string;
   asr: string;
   maghrib: string;
@@ -38,12 +37,11 @@ interface ConfData {
   shuruq: string;
   jumua: string | null;
   jumua2?: string | null;
-  // array[12], each element is an object keyed "1"–"31"
   calendar: Array<Record<string, string[]>>;
+  iqamaCalendar: Array<Record<string, string[]>>;
   [key: string]: unknown;
 }
 
-// Cache keyed by calendar date — refreshes automatically each new day
 let _cache: { data: ConfData; dateKey: string } | null = null;
 
 function todayKey() {
@@ -68,23 +66,18 @@ async function loadConfData(): Promise<ConfData> {
 
   const html = await res.text();
 
-  // Page uses `let confData = {…};`
   const searchStr = 'let confData = ';
   const startIdx = html.indexOf(searchStr);
-  if (startIdx === -1) throw new Error('confData variable not found in Mawaqit page');
+  if (startIdx === -1) throw new Error('confData not found in Mawaqit page');
 
   const jsonStart = html.indexOf('{', startIdx);
-  if (jsonStart === -1) throw new Error('confData JSON object not found');
+  if (jsonStart === -1) throw new Error('confData JSON not found');
 
-  // Balance braces to find the end of the JSON object
   let depth = 0;
   let i = jsonStart;
   for (; i < html.length; i++) {
     if (html[i] === '{') depth++;
-    else if (html[i] === '}') {
-      depth--;
-      if (depth === 0) break;
-    }
+    else if (html[i] === '}') { depth--; if (depth === 0) break; }
   }
 
   const data = JSON.parse(html.slice(jsonStart, i + 1)) as ConfData;
@@ -92,52 +85,55 @@ async function loadConfData(): Promise<ConfData> {
   return data;
 }
 
-/** Today's 6 prayer times + Jumu'ah iqama */
-export async function getMawaqitToday(): Promise<MawaqitToday> {
+/**
+ * Today's jamaat (iqama) times.
+ * iqamaCalendar key offset: key "N" = day N-1, so for day D use key D+1.
+ */
+export async function getMawaqitTodayIqama(): Promise<MawaqitTodayIqama> {
   const d = await loadConfData();
+  const now = new Date();
+  const monthIdx = now.getMonth();     // 0-indexed
+  const dayNum = now.getDate();        // 1-indexed
+  const key = String(dayNum + 1);     // offset: key N = day N-1
+
+  const t = d.iqamaCalendar[monthIdx]?.[key] ?? [];
+
   return {
-    fajr:    d.times[0] ?? '',
-    sunrise: d.shuruq   ?? '',
-    dhuhr:   d.times[1] ?? '',
-    asr:     d.times[2] ?? '',
-    maghrib: d.times[3] ?? '',
-    isha:    d.times[4] ?? '',
-    jumua:   d.jumua    ?? null,
+    fajr:    t[0] ?? '',
+    sunrise: d.shuruq ?? '',
+    dhuhr:   t[1] ?? '',
+    asr:     t[2] ?? '',
+    maghrib: t[3] ?? '',
+    isha:    t[4] ?? '',
+    jumua:   d.jumua ?? null,
   };
 }
 
 /**
- * Prayer times for every day of the given month.
- * monthNumber is 1-based (1 = January … 12 = December).
+ * Jamaat times for every day of the given month (1-based monthNumber).
  *
- * calendar[monthIdx] is an object keyed by "1"–"31" (1-indexed day numbers).
- * Each value is [fajr, shuruq, dhuhr, asr, maghrib, isha].
+ * iqamaCalendar key offset: key "N" = data for day N-1.
+ * We skip key "1" (it holds the previous month's last day) and use keys "2"–"31"
+ * which represent days 1–30 of the current month.
+ * Day 31 (if the month has it) = key "32", which is absent, so it will be omitted.
  */
-export async function getMawaqitCalendar(monthNumber: number): Promise<MawaqitCalendarDay[]> {
+export async function getMawaqitIqamaCalendar(monthNumber: number): Promise<MawaqitIqamaDay[]> {
   const d = await loadConfData();
-
-  const monthObj = d.calendar[monthNumber - 1]; // 0-indexed month
+  const monthObj = d.iqamaCalendar[monthNumber - 1];
   if (!monthObj || typeof monthObj !== 'object') return [];
 
-  const days: MawaqitCalendarDay[] = [];
-
-  // Keys are "1", "2", … "31" — iterate in order
-  const dayNumbers = Object.keys(monthObj)
+  return Object.keys(monthObj)
     .map(Number)
-    .sort((a, b) => a - b);
-
-  for (const dayNum of dayNumbers) {
-    const t = monthObj[String(dayNum)] ?? [];
-    // Format: [fajr, shuruq, dhuhr, asr, maghrib, isha]
-    days.push({
-      fajr:    t[0] ?? '',
-      sunrise: t[1] ?? '',
-      dhuhr:   t[2] ?? '',
-      asr:     t[3] ?? '',
-      maghrib: t[4] ?? '',
-      isha:    t[5] ?? '',
+    .sort((a, b) => a - b)
+    .filter(n => n >= 2)          // skip key "1" (prev month's last day)
+    .map(keyNum => {
+      const t = monthObj[String(keyNum)] ?? [];
+      return {
+        fajr:    t[0] ?? '',
+        dhuhr:   t[1] ?? '',
+        asr:     t[2] ?? '',
+        maghrib: t[3] ?? '',
+        isha:    t[4] ?? '',
+      };
     });
-  }
-
-  return days;
 }

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getMawaqitCalendar } from '@/lib/mawaqit';
+import { getMawaqitIqamaCalendar } from '@/lib/mawaqit';
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
   const month = parseInt(searchParams.get('month') ?? String(now.getMonth() + 1), 10);
 
   try {
-    const days = await getMawaqitCalendar(month);
+    const days = await getMawaqitIqamaCalendar(month);
     return NextResponse.json(days);
   } catch (err) {
     console.error('[CMC Calendar] Mawaqit fetch failed:', err);
