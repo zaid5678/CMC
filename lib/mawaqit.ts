@@ -119,21 +119,36 @@ export async function getMawaqitTodayIqama(): Promise<MawaqitTodayIqama> {
  */
 export async function getMawaqitIqamaCalendar(monthNumber: number): Promise<MawaqitIqamaDay[]> {
   const d = await loadConfData();
-  const monthObj = d.iqamaCalendar[monthNumber - 1];
+  const monthIdx = monthNumber - 1; // 0-indexed
+  const monthObj = d.iqamaCalendar[monthIdx];
   if (!monthObj || typeof monthObj !== 'object') return [];
 
-  return Object.keys(monthObj)
+  // Keys "2"–"31" = days 1–30 of this month (key N = day N-1)
+  const days: MawaqitIqamaDay[] = Object.keys(monthObj)
     .map(Number)
     .sort((a, b) => a - b)
-    .filter(n => n >= 2)          // skip key "1" (prev month's last day)
+    .filter(n => n >= 2)
     .map(keyNum => {
       const t = monthObj[String(keyNum)] ?? [];
-      return {
-        fajr:    t[0] ?? '',
-        dhuhr:   t[1] ?? '',
-        asr:     t[2] ?? '',
-        maghrib: t[3] ?? '',
-        isha:    t[4] ?? '',
-      };
+      return { fajr: t[0] ?? '', dhuhr: t[1] ?? '', asr: t[2] ?? '', maghrib: t[3] ?? '', isha: t[4] ?? '' };
     });
+
+  // For 31-day months, day 31 lives at key "1" of the next month
+  // (the same key-offset pattern: next month's key "1" = current month's last day)
+  const year = new Date().getFullYear();
+  const daysInMonth = new Date(year, monthNumber, 0).getDate();
+  if (daysInMonth === 31) {
+    const nextMonthIdx = (monthIdx + 1) % 12;
+    const nextMonthObj = d.iqamaCalendar[nextMonthIdx];
+    const t = nextMonthObj?.['1'] ?? [];
+    days.push({
+      fajr:    t[0] ?? '',
+      dhuhr:   t[1] ?? '',
+      asr:     t[2] ?? '',
+      maghrib: t[3] ?? '',
+      isha:    t[4] ?? '',
+    });
+  }
+
+  return days;
 }
