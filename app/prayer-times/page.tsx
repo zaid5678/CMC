@@ -149,7 +149,7 @@ export default function PrayerTimesPage() {
                 </h2>
                 {today?.jumua && (
                   <p className="text-2xl font-semibold mb-3" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-gold-rich)' }}>
-                    Iqama at {today.jumua}
+                    {"Jumu'ah at"} {today.jumua}
                   </p>
                 )}
                 <p className="text-base" style={{ color: 'rgba(248,244,236,0.75)', fontFamily: 'var(--font-body)' }}>
