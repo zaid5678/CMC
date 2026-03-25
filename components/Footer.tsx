@@ -7,8 +7,6 @@ const QUICK_LINKS = [
   { href: '/about', label: 'About Us' },
   { href: '/prayer-times', label: 'Prayer Times' },
   { href: '/services', label: 'Services' },
-  { href: '/events', label: 'Events' },
-  { href: '/donate', label: 'Donate' },
   { href: '/contact', label: 'Contact Us' },
 ];
 
