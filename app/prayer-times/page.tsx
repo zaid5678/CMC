@@ -59,7 +59,7 @@ export default function PrayerTimesPage() {
     <>
       <PageHero
         title="Prayer Times"
-        subtitle="Daily prayer times for Chelsea SW10. Jumu'ah every Friday at 12:20pm."
+        subtitle="Daily prayer times."
         breadcrumbs={[{ label: 'Prayer Times' }]}
         image={{ src: '/images/inside_pic.jpg', alt: 'Prayer hall interior of Chelsea Muslim Community mosque' }}
       />
