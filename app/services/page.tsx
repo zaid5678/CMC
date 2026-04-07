@@ -4,7 +4,7 @@ import PageHero from '@/components/PageHero';
 import SectionReveal from '@/components/SectionReveal';
 import OrnamentalDivider from '@/components/OrnamentalDivider';
 import GeometricPattern from '@/components/GeometricPattern';
-import servicesData from '@/data/services.json';
+import { getServices } from '@/lib/contentful';
 
 export const metadata: Metadata = {
   title: 'Our Services',
@@ -14,7 +14,8 @@ export const metadata: Metadata = {
 
 const ENQUIRE_SERVICES = ['quran-education', 'arabic-language', 'nikah', 'janazah'];
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const servicesData = await getServices();
   return (
     <>
       <PageHero

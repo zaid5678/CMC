@@ -6,9 +6,7 @@ import SectionReveal from '@/components/SectionReveal';
 import OrnamentalDivider from '@/components/OrnamentalDivider';
 import EventCard from '@/components/EventCard';
 import GeometricPattern from '@/components/GeometricPattern';
-import eventsData from '@/data/events.json';
-import announcementsData from '@/data/announcements.json';
-import openingHours from '@/data/opening-hours.json';
+import { getEvents, getAnnouncements, getOpeningHours } from '@/lib/contentful';
 
 const LeafletMap = dynamic(() => import('@/components/LeafletMap'), { ssr: false });
 
@@ -96,7 +94,13 @@ function formatAnnouncementDate(dateStr: string) {
   });
 }
 
-export default function HomePage() {
+export default async function HomePage() {
+  const [eventsData, announcementsData, openingHours] = await Promise.all([
+    getEvents(),
+    getAnnouncements(),
+    getOpeningHours(),
+  ]);
+
   const recentEvents = [...eventsData]
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
     .slice(0, 3);
