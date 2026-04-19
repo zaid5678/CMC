@@ -6,7 +6,9 @@ import SectionReveal from '@/components/SectionReveal';
 import OrnamentalDivider from '@/components/OrnamentalDivider';
 import EventCard from '@/components/EventCard';
 import GeometricPattern from '@/components/GeometricPattern';
-import { getEvents, getAnnouncements, getOpeningHours } from '@/lib/contentful';
+import { getEvents, getAnnouncements, getOpeningHours, getSiteSettings } from '@/lib/contentful';
+
+export const revalidate = 3600;
 
 const LeafletMap = dynamic(() => import('@/components/LeafletMap'), { ssr: false });
 
@@ -95,10 +97,11 @@ function formatAnnouncementDate(dateStr: string) {
 }
 
 export default async function HomePage() {
-  const [eventsData, announcementsData, openingHours] = await Promise.all([
+  const [eventsData, announcementsData, openingHours, siteSettings] = await Promise.all([
     getEvents(),
     getAnnouncements(),
     getOpeningHours(),
+    getSiteSettings(),
   ]);
 
   const recentEvents = [...eventsData]
@@ -373,12 +376,12 @@ export default async function HomePage() {
                     Chelsea Muslim Community
                   </h3>
                   <address className="not-italic space-y-1">
-                    <p style={{ fontFamily: 'var(--font-body)', color: 'var(--color-ink-soft)' }}>14 Blantyre Street</p>
-                    <p style={{ fontFamily: 'var(--font-body)', color: 'var(--color-ink-soft)' }}>Worlds End Estate</p>
-                    <p style={{ fontFamily: 'var(--font-body)', color: 'var(--color-ink-soft)' }}>London SW10 0DS</p>
+                    <p style={{ fontFamily: 'var(--font-body)', color: 'var(--color-ink-soft)' }}>{siteSettings.addressLine1}</p>
+                    <p style={{ fontFamily: 'var(--font-body)', color: 'var(--color-ink-soft)' }}>{siteSettings.addressLine2}</p>
+                    <p style={{ fontFamily: 'var(--font-body)', color: 'var(--color-ink-soft)' }}>{siteSettings.addressLine3}</p>
                   </address>
                   <a
-                    href="https://maps.app.goo.gl/Fc9PfmyesNgfprwT7"
+                    href={siteSettings.googleMapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-gold mt-4 inline-flex"
@@ -405,13 +408,13 @@ export default async function HomePage() {
                 <div className="space-y-2">
                   <p className="text-sm" style={{ fontFamily: 'var(--font-body)', color: 'var(--color-ink-soft)' }}>
                     <strong style={{ color: 'var(--color-ink)' }}>Email: </strong>
-                    <a href="mailto:info@chelseamuslimcommunity.org.uk" style={{ color: 'var(--color-green-mid)' }}>
-                      info@chelseamuslimcommunity.org.uk
+                    <a href={`mailto:${siteSettings.email}`} style={{ color: 'var(--color-green-mid)' }}>
+                      {siteSettings.email}
                     </a>
                   </p>
                   <p className="text-sm" style={{ fontFamily: 'var(--font-body)', color: 'var(--color-ink-soft)' }}>
                     <strong style={{ color: 'var(--color-ink)' }}>Phone: </strong>
-                    <a href="tel:+442071234567" style={{ color: 'var(--color-green-mid)' }}>+44 (0)20 7123 4567</a>
+                    <a href={`tel:${siteSettings.phone.replace(/\s/g, '')}`} style={{ color: 'var(--color-green-mid)' }}>{siteSettings.phone}</a>
                   </p>
                 </div>
               </div>

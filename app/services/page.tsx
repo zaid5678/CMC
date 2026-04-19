@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+
+export const revalidate = 3600;
 import PageHero from '@/components/PageHero';
 import SectionReveal from '@/components/SectionReveal';
 import OrnamentalDivider from '@/components/OrnamentalDivider';
