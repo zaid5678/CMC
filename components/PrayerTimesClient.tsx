@@ -6,6 +6,7 @@ import PageHero from '@/components/PageHero';
 import SectionReveal from '@/components/SectionReveal';
 import OrnamentalDivider from '@/components/OrnamentalDivider';
 import { CMC_QIBLA_BEARING } from '@/lib/qibla';
+import type { PrayerTimetable } from '@/lib/contentful';
 
 const QiblaCompass = dynamic(() => import('@/components/QiblaCompass'), { ssr: false });
 
@@ -34,7 +35,7 @@ function getTodayIndex() {
   return new Date().getDate() - 1; // 0-based; calendar array starts at day 1
 }
 
-export default function PrayerTimesClient({ pdfUrl }: { pdfUrl?: string }) {
+export default function PrayerTimesClient({ pdfUrl, timetables = [] }: { pdfUrl?: string; timetables?: PrayerTimetable[] }) {
   const [today, setToday] = useState<TodayData | null>(null);
   const [calendar, setCalendar] = useState<CalendarDay[]>([]);
   const [loading, setLoading] = useState(true);
@@ -270,6 +271,71 @@ export default function PrayerTimesClient({ pdfUrl }: { pdfUrl?: string }) {
           </SectionReveal>
         </div>
       </section>
+
+      {/* ═══ PRAYER TIMETABLE DOWNLOADS ═══ */}
+      {timetables.length > 0 && (
+        <section className="section-padding px-6 lg:px-12" style={{ background: 'var(--color-ivory)' }} aria-labelledby="timetables-heading">
+          <div className="max-w-5xl mx-auto">
+            <SectionReveal>
+              <h2 id="timetables-heading" className="text-center mb-1" style={{ color: 'var(--color-ink)', fontFamily: 'var(--font-display)' }}>
+                Prayer Timetables
+              </h2>
+              <p className="text-center text-sm mb-2" style={{ color: 'var(--color-ink-soft)', fontFamily: 'var(--font-body)' }}>
+                Download the monthly PDF timetable to print or save
+              </p>
+              <OrnamentalDivider className="my-4" />
+            </SectionReveal>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+              {timetables.map((t, i) => (
+                <SectionReveal key={t.id} delay={i * 0.06}>
+                  <a
+                    href={t.fileUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 p-4 rounded-lg transition-all"
+                    style={{
+                      background: 'var(--color-surface)',
+                      border: '1px solid rgba(201,168,76,0.25)',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    {/* PDF icon */}
+                    <div
+                      className="flex-shrink-0 w-11 h-11 rounded-lg flex items-center justify-center"
+                      style={{ background: 'var(--color-green-deep)' }}
+                    >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(201,168,76,0.9)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="12" y1="18" x2="12" y2="12"/>
+                        <polyline points="9 15 12 18 15 15"/>
+                      </svg>
+                    </div>
+
+                    {/* Text */}
+                    <div className="flex-1 min-w-0">
+                      <p className="font-medium text-sm leading-snug truncate" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-green-deep)' }}>
+                        {t.title}
+                      </p>
+                      <p className="text-xs mt-0.5" style={{ color: 'var(--color-gold-dark)', fontFamily: 'var(--font-body)' }}>
+                        {t.month}
+                      </p>
+                    </div>
+
+                    {/* Download arrow */}
+                    <svg className="flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold-dark)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                      <polyline points="7 10 12 15 17 10"/>
+                      <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                  </a>
+                </SectionReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ═══ QIBLA COMPASS ═══ */}
       <section className="section-padding px-6 lg:px-12" style={{ background: 'var(--color-ivory)' }} aria-labelledby="qibla-heading">

@@ -85,6 +85,18 @@
       ]
     },
     {
+      "sys": { "id": "prayerTimetable", "type": "ContentType" },
+      "name": "Prayer Timetable",
+      "displayField": "title",
+      "description": "Monthly prayer timetable PDFs shown on the Prayer Times page",
+      "fields": [
+        { "id": "title", "name": "Title",      "type": "Symbol",  "required": true,  "localized": false },
+        { "id": "month", "name": "Month",      "type": "Symbol",  "required": true,  "localized": false },
+        { "id": "file",  "name": "File (PDF)", "type": "Link",    "required": true,  "localized": false, "linkType": "Asset" },
+        { "id": "order", "name": "Order",      "type": "Integer", "required": false, "localized": false }
+      ]
+    },
+    {
       "sys": { "id": "resource", "type": "ContentType" },
       "name": "Resource",
       "displayField": "title",

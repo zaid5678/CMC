@@ -66,6 +66,14 @@ export type SiteSettings = {
   prayerTimesPdfUrl?: string;
 };
 
+export type PrayerTimetable = {
+  id: string;
+  title: string;
+  month: string;
+  fileUrl: string;
+  order: number;
+};
+
 export type Resource = {
   id: string;
   title: string;
@@ -202,6 +210,30 @@ export async function getOpeningHours(): Promise<OpeningHours> {
     };
   } catch {
     return openingHoursData;
+  }
+}
+
+export async function getPrayerTimetables(): Promise<PrayerTimetable[]> {
+  const client = getClient();
+  if (!client) return [];
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const entries = await client.getEntries({ content_type: 'prayerTimetable', include: 1, order: ['fields.order'] } as any);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return entries.items.map((item: any) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const fileField = item.fields.file as any;
+      const rawUrl: string = fileField?.fields?.file?.url ?? '';
+      return {
+        id: item.sys.id,
+        title: item.fields.title ?? '',
+        month: item.fields.month ?? '',
+        fileUrl: rawUrl ? `https:${rawUrl}` : '',
+        order: item.fields.order ?? 0,
+      };
+    }).filter((t: PrayerTimetable) => t.fileUrl);
+  } catch {
+    return [];
   }
 }
 
