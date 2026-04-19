@@ -11,6 +11,7 @@ const NAV_LINKS = [
   { href: '/',             label: 'Home' },
   { href: '/about',        label: 'About' },
   { href: '/prayer-times', label: 'Prayer Times' },
+  { href: '/resources',    label: 'Resources' },
   // { href: '/services',  label: 'Services' },  // hidden — re-enable when ready
   // { href: '/events',    label: 'Events' },     // hidden — re-enable when ready
   { href: '/donate',       label: 'Donate' },

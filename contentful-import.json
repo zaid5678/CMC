@@ -85,6 +85,18 @@
       ]
     },
     {
+      "sys": { "id": "resource", "type": "ContentType" },
+      "name": "Resource",
+      "displayField": "title",
+      "description": "Downloadable files such as prayer timetables, leaflets, and forms",
+      "fields": [
+        { "id": "title",       "name": "Title",       "type": "Symbol", "required": true,  "localized": false },
+        { "id": "description", "name": "Description", "type": "Symbol", "required": false, "localized": false },
+        { "id": "file",        "name": "File",        "type": "Link",   "required": true,  "localized": false, "linkType": "Asset" },
+        { "id": "category",    "name": "Category",    "type": "Symbol", "required": false, "localized": false }
+      ]
+    },
+    {
       "sys": { "id": "aboutContent", "type": "ContentType" },
       "name": "About Page Content",
       "displayField": "missionStatement",
