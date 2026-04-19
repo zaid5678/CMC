@@ -63,6 +63,7 @@ export type SiteSettings = {
   phone: string;
   email: string;
   googleMapsUrl: string;
+  prayerTimesPdfUrl?: string;
 };
 
 export type AboutContent = {
@@ -199,10 +200,17 @@ export async function getSiteSettings(): Promise<SiteSettings> {
   const client = getClient();
   if (!client) return siteSettingsData;
   try {
-    const entries = await client.getEntries({ content_type: 'siteSettings', limit: 1 });
+    // include: 1 resolves linked assets (e.g. prayerTimesPdf)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const entries = await client.getEntries({ content_type: 'siteSettings', limit: 1, include: 1 } as any);
     if (!entries.items.length) return siteSettingsData;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const f = entries.items[0].fields as any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const pdfAsset = f.prayerTimesPdf as any;
+    const pdfUrl: string | undefined = pdfAsset?.fields?.file?.url
+      ? `https:${pdfAsset.fields.file.url}`
+      : undefined;
     return {
       addressLine1: f.addressLine1 ?? siteSettingsData.addressLine1,
       addressLine2: f.addressLine2 ?? siteSettingsData.addressLine2,
@@ -210,6 +218,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       phone: f.phone ?? siteSettingsData.phone,
       email: f.email ?? siteSettingsData.email,
       googleMapsUrl: f.googleMapsUrl ?? siteSettingsData.googleMapsUrl,
+      prayerTimesPdfUrl: pdfUrl,
     };
   } catch {
     return siteSettingsData;
