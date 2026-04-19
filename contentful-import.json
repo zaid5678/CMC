@@ -1,0 +1,460 @@
+{
+  "contentTypes": [
+    {
+      "sys": { "id": "announcement", "type": "ContentType" },
+      "name": "Announcement",
+      "displayField": "title",
+      "description": "News and notices displayed on the home page",
+      "fields": [
+        { "id": "title",   "name": "Title",   "type": "Symbol", "required": true,  "localized": false },
+        { "id": "date",    "name": "Date",     "type": "Date",   "required": true,  "localized": false },
+        { "id": "excerpt", "name": "Excerpt",  "type": "Symbol", "required": true,  "localized": false },
+        { "id": "body",    "name": "Body",     "type": "Text",   "required": true,  "localized": false }
+      ]
+    },
+    {
+      "sys": { "id": "event", "type": "ContentType" },
+      "name": "Event",
+      "displayField": "title",
+      "description": "Events shown on the Events page and home page preview",
+      "fields": [
+        { "id": "title",       "name": "Title",          "type": "Symbol",  "required": true,  "localized": false },
+        { "id": "date",        "name": "Date",           "type": "Date",    "required": true,  "localized": false },
+        { "id": "time",        "name": "Time",           "type": "Symbol",  "required": false, "localized": false },
+        { "id": "category",    "name": "Category",       "type": "Symbol",  "required": false, "localized": false },
+        { "id": "description", "name": "Description",    "type": "Text",    "required": true,  "localized": false },
+        { "id": "imageAlt",    "name": "Image Alt Text", "type": "Symbol",  "required": false, "localized": false }
+      ]
+    },
+    {
+      "sys": { "id": "service", "type": "ContentType" },
+      "name": "Service",
+      "displayField": "title",
+      "description": "Services listed on the Services page",
+      "fields": [
+        { "id": "id",               "name": "ID (slug)",          "type": "Symbol",  "required": true,  "localized": false },
+        { "id": "title",            "name": "Title",              "type": "Symbol",  "required": true,  "localized": false },
+        { "id": "icon",             "name": "Icon",               "type": "Symbol",  "required": false, "localized": false },
+        { "id": "shortDescription", "name": "Short Description",  "type": "Symbol",  "required": true,  "localized": false },
+        { "id": "fullDescription",  "name": "Full Description",   "type": "Text",    "required": true,  "localized": false },
+        { "id": "order",            "name": "Display Order",      "type": "Integer", "required": true,  "localized": false }
+      ]
+    },
+    {
+      "sys": { "id": "teamMember", "type": "ContentType" },
+      "name": "Team Member",
+      "displayField": "name",
+      "description": "Staff and volunteers shown on the About page",
+      "fields": [
+        { "id": "name",     "name": "Full Name", "type": "Symbol", "required": true,  "localized": false },
+        { "id": "role",     "name": "Role",      "type": "Symbol", "required": true,  "localized": false },
+        { "id": "bio",      "name": "Biography", "type": "Text",   "required": true,  "localized": false },
+        { "id": "initials", "name": "Initials",  "type": "Symbol", "required": true,  "localized": false }
+      ]
+    },
+    {
+      "sys": { "id": "openingHours", "type": "ContentType" },
+      "name": "Opening Hours",
+      "displayField": "mondayHours",
+      "description": "Mosque opening hours — create exactly one entry",
+      "fields": [
+        { "id": "mondayHours",      "name": "Monday Hours",          "type": "Symbol", "required": true,  "localized": false },
+        { "id": "tuesdayHours",     "name": "Tuesday Hours",         "type": "Symbol", "required": true,  "localized": false },
+        { "id": "wednesdayHours",   "name": "Wednesday Hours",       "type": "Symbol", "required": true,  "localized": false },
+        { "id": "thursdayHours",    "name": "Thursday Hours",        "type": "Symbol", "required": true,  "localized": false },
+        { "id": "fridayHours",      "name": "Friday Hours",          "type": "Symbol", "required": true,  "localized": false },
+        { "id": "saturdayHours",    "name": "Saturday Hours",        "type": "Symbol", "required": true,  "localized": false },
+        { "id": "sundayHours",      "name": "Sunday Hours",          "type": "Symbol", "required": true,  "localized": false },
+        { "id": "jumuahKhutbahTime","name": "Jumu'ah Khutbah Time",  "type": "Symbol", "required": true,  "localized": false },
+        { "id": "jumuahPrayerTime", "name": "Jumu'ah Prayer Time",   "type": "Symbol", "required": true,  "localized": false },
+        { "id": "jumuahNote",       "name": "Jumu'ah Note",          "type": "Symbol", "required": false, "localized": false }
+      ]
+    },
+    {
+      "sys": { "id": "siteSettings", "type": "ContentType" },
+      "name": "Site Settings",
+      "displayField": "addressLine1",
+      "description": "Global site settings — address, phone, email. Create exactly one entry.",
+      "fields": [
+        { "id": "addressLine1",  "name": "Address Line 1",   "type": "Symbol", "required": true,  "localized": false },
+        { "id": "addressLine2",  "name": "Address Line 2",   "type": "Symbol", "required": true,  "localized": false },
+        { "id": "addressLine3",  "name": "Address Line 3",   "type": "Symbol", "required": true,  "localized": false },
+        { "id": "phone",         "name": "Phone Number",     "type": "Symbol", "required": true,  "localized": false },
+        { "id": "email",         "name": "Email Address",    "type": "Symbol", "required": true,  "localized": false },
+        { "id": "googleMapsUrl", "name": "Google Maps URL",  "type": "Symbol", "required": true,  "localized": false }
+      ]
+    },
+    {
+      "sys": { "id": "aboutContent", "type": "ContentType" },
+      "name": "About Page Content",
+      "displayField": "missionStatement",
+      "description": "Editorial content for the About page — create exactly one entry",
+      "fields": [
+        { "id": "historyParagraph1",    "name": "History — Paragraph 1",    "type": "Text",   "required": true,  "localized": false },
+        { "id": "historyParagraph2",    "name": "History — Paragraph 2",    "type": "Text",   "required": true,  "localized": false },
+        { "id": "historyParagraph3",    "name": "History — Paragraph 3",    "type": "Text",   "required": true,  "localized": false },
+        { "id": "missionStatement",     "name": "Mission Statement",         "type": "Text",   "required": true,  "localized": false },
+        { "id": "principle1Title",      "name": "Principle 1 Title",         "type": "Symbol", "required": true,  "localized": false },
+        { "id": "principle1Description","name": "Principle 1 Description",   "type": "Text",   "required": true,  "localized": false },
+        { "id": "principle2Title",      "name": "Principle 2 Title",         "type": "Symbol", "required": true,  "localized": false },
+        { "id": "principle2Description","name": "Principle 2 Description",   "type": "Text",   "required": true,  "localized": false },
+        { "id": "principle3Title",      "name": "Principle 3 Title",         "type": "Symbol", "required": true,  "localized": false },
+        { "id": "principle3Description","name": "Principle 3 Description",   "type": "Text",   "required": true,  "localized": false },
+        { "id": "values",               "name": "Our Values (comma-separated)","type": "Symbol","required": true, "localized": false }
+      ]
+    }
+  ],
+
+  "entries": [
+
+    {
+      "sys": {
+        "id": "ramadan-timetable-2025",
+        "type": "Entry",
+        "contentType": { "sys": { "type": "Link", "linkType": "ContentType", "id": "announcement" } }
+      },
+      "fields": {
+        "title":   { "en-US": "Ramadan 2025 Timetable Now Available" },
+        "date":    { "en-US": "2025-02-28T00:00:00+00:00" },
+        "excerpt": { "en-US": "Our full Ramadan prayer and iftar timetable for 1446 AH is now available to collect from the mosque reception or download below." },
+        "body":    { "en-US": "Alhamdulillah, we are pleased to share the Ramadan 2025 timetable for Chelsea Muslim Community. The timetable includes Fajr, Suhoor cut-off, Iftar, and Tarawih times for the entire month of Ramadan 1446 AH. Printed copies are available at the mosque from the first week of Sha'ban. Please note that Tarawih prayers will begin at 9:00pm nightly and last approximately 90 minutes. Community iftar will be held every Friday, Saturday, and Sunday throughout Ramadan — all are welcome." }
+      }
+    },
+    {
+      "sys": {
+        "id": "quran-class-registration",
+        "type": "Entry",
+        "contentType": { "sys": { "type": "Link", "linkType": "ContentType", "id": "announcement" } }
+      },
+      "fields": {
+        "title":   { "en-US": "New Term: Quran & Arabic Classes Open for Registration" },
+        "date":    { "en-US": "2025-03-01T00:00:00+00:00" },
+        "excerpt": { "en-US": "The spring term for our Quran and Arabic language classes begins on 7 April. Places are limited — register your interest at the mosque or via the contact form." },
+        "body":    { "en-US": "We are delighted to open registration for the spring term of our Quran Education and Arabic Language programmes. Classes are available for children aged 6–16 (weekday evenings) and adults of all levels (Saturday mornings). Our Quran classes focus on correct recitation (tajweed), memorisation, and understanding. The Arabic programme covers conversational and classical Arabic at beginner and intermediate levels. Places are limited to ensure a high quality of teaching. To register, please speak to our administrator after any prayer time, or use the contact form on this website." }
+      }
+    },
+    {
+      "sys": {
+        "id": "maintenance-works",
+        "type": "Entry",
+        "contentType": { "sys": { "type": "Link", "linkType": "ContentType", "id": "announcement" } }
+      },
+      "fields": {
+        "title":   { "en-US": "Planned Maintenance: Wudu Area Refurbishment" },
+        "date":    { "en-US": "2025-03-10T00:00:00+00:00" },
+        "excerpt": { "en-US": "Essential refurbishment works to the wudu (ablution) facilities will take place from 17–21 March. Alternative arrangements are in place — please read for details." },
+        "body":    { "en-US": "We wish to inform the congregation that essential maintenance and improvement works to our wudu (ablution) facilities will take place between Monday 17 March and Friday 21 March 2025. During this period, temporary wudu facilities will be available in the room adjacent to the main prayer hall. We apologise for any inconvenience and are grateful for your patience. The refurbishment will significantly improve the facilities for the entire congregation. Jumu'ah prayer on 21 March will proceed as normal. If you have any questions, please speak with our administrator." }
+      }
+    },
+
+    {
+      "sys": {
+        "id": "ramadan-iftar-2025",
+        "type": "Entry",
+        "contentType": { "sys": { "type": "Link", "linkType": "ContentType", "id": "event" } }
+      },
+      "fields": {
+        "title":       { "en-US": "Ramadan Iftar Night" },
+        "date":        { "en-US": "2025-03-15T00:00:00+00:00" },
+        "time":        { "en-US": "Sunset (approx. 6:15pm)" },
+        "category":    { "en-US": "Ramadan" },
+        "description": { "en-US": "Join us for our beloved community iftar as we break our fast together in the spirit of unity and gratitude. All are welcome — Muslim and non-Muslim neighbours alike. Bring a dish to share or simply come as you are." },
+        "imageAlt":    { "en-US": "Community gathering for iftar during Ramadan" }
+      }
+    },
+    {
+      "sys": {
+        "id": "quran-reading-circle",
+        "type": "Entry",
+        "contentType": { "sys": { "type": "Link", "linkType": "ContentType", "id": "event" } }
+      },
+      "fields": {
+        "title":       { "en-US": "Quran Reading Circle" },
+        "date":        { "en-US": "2025-04-06T00:00:00+00:00" },
+        "time":        { "en-US": "10:00am – 12:00pm" },
+        "category":    { "en-US": "Education" },
+        "description": { "en-US": "A gentle, welcoming weekly gathering for adults of all levels to read, reflect on, and discuss passages from the Holy Quran. Led by our resident Imam, this circle is open to beginners and those returning to regular practice." },
+        "imageAlt":    { "en-US": "Adults studying the Quran together in a circle" }
+      }
+    },
+    {
+      "sys": {
+        "id": "community-fundraiser-dinner",
+        "type": "Entry",
+        "contentType": { "sys": { "type": "Link", "linkType": "ContentType", "id": "event" } }
+      },
+      "fields": {
+        "title":       { "en-US": "Community Fundraiser Dinner" },
+        "date":        { "en-US": "2025-05-10T00:00:00+00:00" },
+        "time":        { "en-US": "7:00pm – 10:00pm" },
+        "category":    { "en-US": "Community" },
+        "description": { "en-US": "Our annual fundraising dinner supports the mosque's maintenance, Quran education programme, and community welfare fund. Featuring a keynote address, three-course meal, and a live auction. Tickets available at the mosque." },
+        "imageAlt":    { "en-US": "Elegant community fundraiser dinner setting" }
+      }
+    },
+    {
+      "sys": {
+        "id": "sisters-wellbeing-circle",
+        "type": "Entry",
+        "contentType": { "sys": { "type": "Link", "linkType": "ContentType", "id": "event" } }
+      },
+      "fields": {
+        "title":       { "en-US": "Sisters' Wellbeing Circle" },
+        "date":        { "en-US": "2025-04-19T00:00:00+00:00" },
+        "time":        { "en-US": "2:00pm – 4:00pm" },
+        "category":    { "en-US": "Sisters" },
+        "description": { "en-US": "A safe, warm space for sisters to connect, share, and support one another. This month's gathering focuses on mental wellbeing and spiritual resilience, with light refreshments. Childcare available on request." },
+        "imageAlt":    { "en-US": "Muslim women in a community gathering" }
+      }
+    },
+    {
+      "sys": {
+        "id": "youth-football-deen",
+        "type": "Entry",
+        "contentType": { "sys": { "type": "Link", "linkType": "ContentType", "id": "event" } }
+      },
+      "fields": {
+        "title":       { "en-US": "Youth Football & Deen" },
+        "date":        { "en-US": "2025-04-26T00:00:00+00:00" },
+        "time":        { "en-US": "11:00am – 2:00pm" },
+        "category":    { "en-US": "Youth" },
+        "description": { "en-US": "A Saturday morning combining five-a-side football at Cremorne Gardens with a short, engaging talk on character and purpose in Islam. Open to all young men aged 12–21. Equipment provided. No prior booking needed." },
+        "imageAlt":    { "en-US": "Young Muslim men playing football together" }
+      }
+    },
+    {
+      "sys": {
+        "id": "eid-celebration",
+        "type": "Entry",
+        "contentType": { "sys": { "type": "Link", "linkType": "ContentType", "id": "event" } }
+      },
+      "fields": {
+        "title":       { "en-US": "Eid ul-Fitr Celebration" },
+        "date":        { "en-US": "2025-03-30T00:00:00+00:00" },
+        "time":        { "en-US": "Following Eid prayer" },
+        "category":    { "en-US": "Community" },
+        "description": { "en-US": "Celebrate the joy of Eid with your CMC family. The celebration follows our Eid prayer and includes traditional sweets, activities for children, and the warmth of community. Open to all — dress in your finest!" },
+        "imageAlt":    { "en-US": "Joyful Eid celebration with community members in colourful attire" }
+      }
+    },
+
+    {
+      "sys": {
+        "id": "svc-daily-prayers",
+        "type": "Entry",
+        "contentType": { "sys": { "type": "Link", "linkType": "ContentType", "id": "service" } }
+      },
+      "fields": {
+        "id":               { "en-US": "daily-prayers" },
+        "title":            { "en-US": "Daily Prayers" },
+        "icon":             { "en-US": "minaret" },
+        "shortDescription": { "en-US": "Five daily prayers open to all, in a space of peace and devotion." },
+        "fullDescription":  { "en-US": "Chelsea Muslim Community holds all five daily prayers — Fajr, Dhuhr, Asr, Maghrib, and Isha — every day of the year. Our prayer hall accommodates 150 worshippers, with a separate, well-appointed sisters' gallery. Full wudu (ablution) facilities are available. The mosque is open from 30 minutes before Fajr to 30 minutes after Isha. All are welcome, whether you pray regularly or are simply seeking a moment of reflection." },
+        "order":            { "en-US": 1 }
+      }
+    },
+    {
+      "sys": {
+        "id": "svc-jumuah",
+        "type": "Entry",
+        "contentType": { "sys": { "type": "Link", "linkType": "ContentType", "id": "service" } }
+      },
+      "fields": {
+        "id":               { "en-US": "jumuah" },
+        "title":            { "en-US": "Jumu'ah (Friday Prayer)" },
+        "icon":             { "en-US": "crescent" },
+        "shortDescription": { "en-US": "The blessed gathering of the week — a khutbah in English and Arabic, followed by prayer." },
+        "fullDescription":  { "en-US": "Jumu'ah (Friday prayer) is the centrepiece of our weekly congregation. The khutbah (sermon) begins at 12:00pm and is delivered in English with Arabic passages, ensuring it is accessible to our diverse community. The Iqama (prayer) follows at 12:20pm. Overflow arrangements are in place for busy Fridays — please arrive by 11:55am to ensure a place in the main hall. Sisters are warmly welcomed via the dedicated entrance on Blantyre Street." },
+        "order":            { "en-US": 2 }
+      }
+    },
+    {
+      "sys": {
+        "id": "svc-quran-education",
+        "type": "Entry",
+        "contentType": { "sys": { "type": "Link", "linkType": "ContentType", "id": "service" } }
+      },
+      "fields": {
+        "id":               { "en-US": "quran-education" },
+        "title":            { "en-US": "Quran Education" },
+        "icon":             { "en-US": "book" },
+        "shortDescription": { "en-US": "Classes for children and adults — from first letters to fluent recitation." },
+        "fullDescription":  { "en-US": "Our Quran Education programme is one of CMC's most cherished offerings. Children aged 6–16 attend weekday evening classes (Monday to Thursday, 5:00–6:30pm) focusing on correct recitation with tajweed, memorisation of shorter surahs, and Islamic character. Adult classes run on Saturday mornings (9:30–11:00am) and cater for complete beginners through to those seeking to perfect their recitation. All teachers hold formal ijazah (chain of certification) in Quranic recitation. To register, please use the contact form or speak to our administrator." },
+        "order":            { "en-US": 3 }
+      }
+    },
+    {
+      "sys": {
+        "id": "svc-arabic-language",
+        "type": "Entry",
+        "contentType": { "sys": { "type": "Link", "linkType": "ContentType", "id": "service" } }
+      },
+      "fields": {
+        "id":               { "en-US": "arabic-language" },
+        "title":            { "en-US": "Arabic Language" },
+        "icon":             { "en-US": "book" },
+        "shortDescription": { "en-US": "Beginner and intermediate Arabic — unlock the language of the Quran." },
+        "fullDescription":  { "en-US": "Understanding Arabic enriches one's relationship with prayer, Quran, and Islamic knowledge. CMC offers Arabic language classes at beginner level (Monday evenings, 7:00–8:30pm) covering the alphabet, basic vocabulary, and sentence structure, and intermediate level (Wednesday evenings, 7:00–8:30pm) focused on Quranic grammar (nahw and sarf). Both courses run in 12-week terms with a brief break between. Class sizes are kept small — maximum 12 students — to ensure individual attention. Contact us to check availability." },
+        "order":            { "en-US": 4 }
+      }
+    },
+    {
+      "sys": {
+        "id": "svc-nikah",
+        "type": "Entry",
+        "contentType": { "sys": { "type": "Link", "linkType": "ContentType", "id": "service" } }
+      },
+      "fields": {
+        "id":               { "en-US": "nikah" },
+        "title":            { "en-US": "Nikah Ceremonies" },
+        "icon":             { "en-US": "hands" },
+        "shortDescription": { "en-US": "Islamic marriage solemnisation with dignity, warmth, and proper Islamic procedure." },
+        "fullDescription":  { "en-US": "CMC performs Nikah (Islamic marriage) ceremonies throughout the year. Imam Ibrahim is experienced in conducting ceremonies for couples from a wide range of backgrounds and cultural traditions. To arrange a Nikah at CMC, both parties should contact us at least four weeks in advance. We will need proof of identity, confirmation of single status, and the presence of a wali (guardian) for the bride, along with two witnesses. The ceremony can be conducted in English, Arabic, or both. We do not charge a fixed fee for this service — a donation to CMC is greatly appreciated. Please note that a Nikah does not constitute a legal marriage under English law; couples wishing to be legally married should also register at Chelsea Register Office." },
+        "order":            { "en-US": 5 }
+      }
+    },
+    {
+      "sys": {
+        "id": "svc-janazah",
+        "type": "Entry",
+        "contentType": { "sys": { "type": "Link", "linkType": "ContentType", "id": "service" } }
+      },
+      "fields": {
+        "id":               { "en-US": "janazah" },
+        "title":            { "en-US": "Janazah Services" },
+        "icon":             { "en-US": "hands" },
+        "shortDescription": { "en-US": "Compassionate support for families at the most difficult of times." },
+        "fullDescription":  { "en-US": "CMC provides full Janazah (funeral) services in accordance with Islamic practice. Imam Ibrahim is available for Janazah prayer at the mosque or at the graveside, and can assist families with the correct Islamic procedures during bereavement. We work with local Islamic funeral directors and can advise on ghusl (ritual washing) arrangements, which must be performed before the prayer. In urgent cases, please call our 24-hour bereavement contact number, available from the mosque administrator. We believe that every Muslim in our community deserves to be farewelled with dignity, regardless of circumstance." },
+        "order":            { "en-US": 6 }
+      }
+    },
+    {
+      "sys": {
+        "id": "svc-community-welfare",
+        "type": "Entry",
+        "contentType": { "sys": { "type": "Link", "linkType": "ContentType", "id": "service" } }
+      },
+      "fields": {
+        "id":               { "en-US": "community-welfare" },
+        "title":            { "en-US": "Community Welfare" },
+        "icon":             { "en-US": "hands" },
+        "shortDescription": { "en-US": "Practical support for those who need it — food, signposting, and a listening ear." },
+        "fullDescription":  { "en-US": "CMC operates a weekly food bank in partnership with The Trussell Trust and Chelsea & Westminster Food Bank, distributing parcels every Saturday morning (10:00am–12:00pm). We also provide welfare support and signposting for community members facing financial hardship, housing difficulty, or mental health challenges, working with Kensington & Chelsea Council's welfare team and local charities. Our Outreach Officer is available to speak confidentially after any prayer time. All support is provided with dignity and discretion, and is open to the wider Chelsea community regardless of faith." },
+        "order":            { "en-US": 7 }
+      }
+    },
+    {
+      "sys": {
+        "id": "svc-ramadan-programme",
+        "type": "Entry",
+        "contentType": { "sys": { "type": "Link", "linkType": "ContentType", "id": "service" } }
+      },
+      "fields": {
+        "id":               { "en-US": "ramadan-programme" },
+        "title":            { "en-US": "Ramadan Programme" },
+        "icon":             { "en-US": "crescent" },
+        "shortDescription": { "en-US": "A full month of community, prayer, and spiritual renewal — the highlight of our year." },
+        "fullDescription":  { "en-US": "Ramadan at CMC is a time of extraordinary community spirit. Throughout the holy month, we host community iftar on Fridays, Saturdays, and Sundays (all are welcome — please bring a dish to share). Tarawih prayers are held nightly, led by Imam Ibrahim, beginning at 9:00pm and lasting approximately 90 minutes. Laylat al-Qadr programme in the final ten nights includes extended night prayers, dhikr circles, and an overnight stay for brothers. The full Ramadan timetable — including accurate Suhoor and Iftar times calculated for SW10 — is available from the mosque from early Sha'ban each year. Times are updated seasonally." },
+        "order":            { "en-US": 8 }
+      }
+    },
+
+    {
+      "sys": {
+        "id": "imam-ibrahim",
+        "type": "Entry",
+        "contentType": { "sys": { "type": "Link", "linkType": "ContentType", "id": "teamMember" } }
+      },
+      "fields": {
+        "name":     { "en-US": "Imam Ibrahim Al-Hussain" },
+        "role":     { "en-US": "Resident Imam & Religious Director" },
+        "bio":      { "en-US": "Imam Ibrahim has led the Chelsea Muslim Community for over a decade, bringing warmth, scholarship, and pastoral care to our congregation. A graduate of Al-Azhar University and the Markfield Institute of Higher Education, he leads all five daily prayers, Friday khutbahs, and our Quran education programme. He is known throughout West London for his approachable, inclusive style of Islamic leadership." },
+        "initials": { "en-US": "IA" }
+      }
+    },
+    {
+      "sys": {
+        "id": "admin-fatima",
+        "type": "Entry",
+        "contentType": { "sys": { "type": "Link", "linkType": "ContentType", "id": "teamMember" } }
+      },
+      "fields": {
+        "name":     { "en-US": "Fatima Osman" },
+        "role":     { "en-US": "Community Administrator" },
+        "bio":      { "en-US": "Fatima is the heart of our day-to-day operations, managing everything from class registrations and event coordination to safeguarding and welfare referrals. A Chelsea resident herself, she brings deep knowledge of the local community and a tireless commitment to ensuring CMC is a welcoming, well-run institution for everyone who comes through our doors." },
+        "initials": { "en-US": "FO" }
+      }
+    },
+    {
+      "sys": {
+        "id": "outreach-yusuf",
+        "type": "Entry",
+        "contentType": { "sys": { "type": "Link", "linkType": "ContentType", "id": "teamMember" } }
+      },
+      "fields": {
+        "name":     { "en-US": "Yusuf Karim" },
+        "role":     { "en-US": "Community Outreach Officer" },
+        "bio":      { "en-US": "Yusuf coordinates CMC's community engagement work — from our food bank partnership and welfare support to interfaith dialogue and local school visits. He works closely with Chelsea & Westminster NHS Trust, Kensington & Chelsea Council, and local charities to ensure our most vulnerable community members receive the support they need." },
+        "initials": { "en-US": "YK" }
+      }
+    },
+
+    {
+      "sys": {
+        "id": "cmc-opening-hours",
+        "type": "Entry",
+        "contentType": { "sys": { "type": "Link", "linkType": "ContentType", "id": "openingHours" } }
+      },
+      "fields": {
+        "mondayHours":      { "en-US": "1:15am – 8:00am" },
+        "tuesdayHours":     { "en-US": "1:15am – 8:00am" },
+        "wednesdayHours":   { "en-US": "1:15am – 8:00am" },
+        "thursdayHours":    { "en-US": "1:15am – 8:00am" },
+        "fridayHours":      { "en-US": "1:15am – 8:00am" },
+        "saturdayHours":    { "en-US": "1:15am – 8:00am" },
+        "sundayHours":      { "en-US": "1:15am – 8:00am" },
+        "jumuahKhutbahTime":{ "en-US": "12:00pm" },
+        "jumuahPrayerTime": { "en-US": "12:20pm (Iqama)" },
+        "jumuahNote":       { "en-US": "Please arrive by 11:55am on Fridays to ensure a place in the main hall." }
+      }
+    },
+
+    {
+      "sys": {
+        "id": "cmc-site-settings",
+        "type": "Entry",
+        "contentType": { "sys": { "type": "Link", "linkType": "ContentType", "id": "siteSettings" } }
+      },
+      "fields": {
+        "addressLine1":  { "en-US": "14 Blantyre Street" },
+        "addressLine2":  { "en-US": "Worlds End Estate" },
+        "addressLine3":  { "en-US": "London SW10 0DS" },
+        "phone":         { "en-US": "+44 (0)20 7123 4567" },
+        "email":         { "en-US": "info@chelseamuslimcommunity.org.uk" },
+        "googleMapsUrl": { "en-US": "https://maps.app.goo.gl/Fc9PfmyesNgfprwT7" }
+      }
+    },
+
+    {
+      "sys": {
+        "id": "cmc-about-content",
+        "type": "Entry",
+        "contentType": { "sys": { "type": "Link", "linkType": "ContentType", "id": "aboutContent" } }
+      },
+      "fields": {
+        "historyParagraph1":     { "en-US": "Chelsea Muslim Community was established to serve the growing Muslim population of SW10 — a neighbourhood defined by its remarkable diversity, the long shadow of the World's End Estate, and a quiet determination among its residents to build something lasting. From the earliest Friday prayers held in borrowed spaces, CMC grew into a permanent home: 14 Blantyre Street, a place as familiar to our congregation as their own sitting rooms." },
+        "historyParagraph2":     { "en-US": "Our community reflects the mosaic of West London: Moroccans and Somalis, South Asians and Egyptians, converts and cradle Muslims, working families and students from Imperial College, long-settled Chelsea residents and new arrivals still learning the city's rhythms. What unites us is not background but faith — and a shared commitment to this patch of London." },
+        "historyParagraph3":     { "en-US": "Over the years, CMC has grown from a space of prayer into a full community institution — Quran classes, welfare support, nikah ceremonies, janazah services, interfaith engagement, and an annual Ramadan programme that brings hundreds together each evening. We remain proudly local, deliberately un-institutional, and utterly committed to the community that made us." },
+        "missionStatement":      { "en-US": "Chelsea Muslim Community exists to nurture faith, strengthen community, and serve all people — guided by Islamic values and rooted in the life of SW10." },
+        "principle1Title":       { "en-US": "Faith" },
+        "principle1Description": { "en-US": "We are grounded in Islamic belief and practice — the five pillars, the Quran, and the Sunnah are our compass. Everything we do flows from a sincere relationship with Allah." },
+        "principle2Title":       { "en-US": "Community" },
+        "principle2Description": { "en-US": "We exist for our community — not as an institution, but as a home. CMC is wherever our congregation gathers: in the prayer hall, at the iftar table, at a neighbour's door." },
+        "principle3Title":       { "en-US": "Service" },
+        "principle3Description": { "en-US": "The Prophet (ﷺ) said: \"The best of people are those most beneficial to others.\" Service — to the mosque, to the vulnerable, to Chelsea — is how we honour that teaching." },
+        "values":                { "en-US": "Faith & Devotion,Community & Belonging,Service & Generosity,Dignity & Respect,Knowledge & Growth" }
+      }
+    }
+
+  ]
+}
