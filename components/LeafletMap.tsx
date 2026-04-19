@@ -14,6 +14,9 @@ export default function LeafletMap({ height = 400, zoom = 16 }: LeafletMapProps)
   useEffect(() => {
     if (typeof window === 'undefined' || !mapRef.current || mapInstanceRef.current) return;
 
+    // Set a truthy sentinel immediately to block concurrent calls before the async import resolves
+    mapInstanceRef.current = true;
+
     const initMap = async () => {
       const L = (await import('leaflet')).default;
       // Leaflet CSS loaded via next.config or global import
@@ -81,10 +84,10 @@ export default function LeafletMap({ height = 400, zoom = 16 }: LeafletMapProps)
     initMap();
 
     return () => {
-      if (mapInstanceRef.current) {
+      if (mapInstanceRef.current && mapInstanceRef.current !== true) {
         (mapInstanceRef.current as { remove: () => void }).remove();
-        mapInstanceRef.current = null;
       }
+      mapInstanceRef.current = null;
     };
   }, [zoom]);
 
