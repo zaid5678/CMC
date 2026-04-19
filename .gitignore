@@ -34,3 +34,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Contentful import error logs and local key files
+contentful-import-error-log-*.json
+*.rtf
